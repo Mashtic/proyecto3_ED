@@ -21,6 +21,8 @@ public class VentanaJugador extends javax.swing.JFrame {
      */
     public VentanaJugador() {
         initComponents();
+        //jp_TableroEnemigo.setLayout(null);
+        generarTablero();
     }
 
     /**
@@ -33,7 +35,7 @@ public class VentanaJugador extends javax.swing.JFrame {
     private void initComponents() {
 
         jp_TableroJugador = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jp_TableroEnemigo = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txa_Mensaje = new javax.swing.JTextArea();
         txf_Mensaje = new javax.swing.JTextField();
@@ -52,14 +54,14 @@ public class VentanaJugador extends javax.swing.JFrame {
             .addGap(0, 391, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jp_TableroEnemigoLayout = new javax.swing.GroupLayout(jp_TableroEnemigo);
+        jp_TableroEnemigo.setLayout(jp_TableroEnemigoLayout);
+        jp_TableroEnemigoLayout.setHorizontalGroup(
+            jp_TableroEnemigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 395, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jp_TableroEnemigoLayout.setVerticalGroup(
+            jp_TableroEnemigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 391, Short.MAX_VALUE)
         );
 
@@ -86,7 +88,7 @@ public class VentanaJugador extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jp_TableroJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jp_TableroEnemigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txf_Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -98,7 +100,7 @@ public class VentanaJugador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jp_TableroEnemigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jp_TableroJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,14 +124,16 @@ public class VentanaJugador extends javax.swing.JFrame {
     public static int DIMENSIONES = 20;
     // Tablero con objetos JButton
     JButton[][] tableroLabels = new JButton[DIMENSIONES][DIMENSIONES];
+    JButton [][] tableroEnemigo = new JButton[DIMENSIONES][DIMENSIONES];
     // tablero logico, indica el status del boton, si disparado o no
     int[][] tableroLogico = new int[DIMENSIONES][DIMENSIONES];
+    int[][] tableroLogicoEnemigo = new int[DIMENSIONES][DIMENSIONES];
     // crea imagen blanco
-    ImageIcon iconoVacio = new ImageIcon(getClass().getResource("cvacio.GIF"));
+   ImageIcon iconoVacio = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\wcvacio.GIF");
     // crea imagen X
-    ImageIcon iconoEquiz = new ImageIcon(getClass().getResource("cequiz.GIF"));
+    ImageIcon iconoEquiz = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\cequiz.GIF");
     // crea la imagen circulo
-    ImageIcon iconoCirculo = new ImageIcon(getClass().getResource("ccirculo.GIF"));
+    ImageIcon iconoCirculo = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\ccirculo.GIF");
     
     int turnoJugador=1;
     
@@ -144,12 +148,16 @@ public class VentanaJugador extends javax.swing.JFrame {
             {
                 // coloca imagen a todos vacio
                 tableroLabels[i][j] = new JButton(iconoVacio);
+                tableroEnemigo[i][j]= new JButton(iconoVacio);
                 //añade al panel el boton;
-                jp_TableroEnemigo.add(tableroLabels[i][j]);
+                jp_TableroJugador.add(tableroLabels[i][j]);
+                jp_TableroEnemigo.add(tableroEnemigo[i][j]);
                 // coloca dimensiones y localidad
-                tableroLabels[i][j].setBounds(100+50*i, 100+50*j, 5, 5);
+                tableroLabels[i][j].setBounds(19*i, 19*j, 21, 21);
+                tableroEnemigo[i][j].setBounds(19*i, 19*j, 21, 21);
                 // coloca el comand como i , j 
                 tableroLabels[i][j].setActionCommand(i+","+j);//i+","+j
+                tableroEnemigo[i][j].setActionCommand(i+","+j);//i+","+j
                 
                 //aclickSobreTablero(evt);ñade el listener al boton
                 tableroLabels[i][j].addMouseListener(new MouseAdapter() {
@@ -159,8 +167,16 @@ public class VentanaJugador extends javax.swing.JFrame {
                     
                 }
                 });
+                tableroEnemigo[i][j].addMouseListener(new MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        
+                    clickSobreTablero(evt);
+                    
+                }
+                });
                 // en logico indica estado en disponible
                 tableroLogico[i][j]=0;
+                tableroLogicoEnemigo[i][j]=0;
             }
         }
     }
@@ -199,7 +215,7 @@ public class VentanaJugador extends javax.swing.JFrame {
             }          
         // este fue el clic del enemigo, marco ahora mi turno
         turnoJugador = numeroJugador;
-        jLabel1.setText("Turno del Jugador "+turnoJugador);
+        //jLabel1.setText("Turno del Jugador "+turnoJugador);
         
         
 //        // es similar a validar si el disparo es bomba o barco
@@ -265,16 +281,16 @@ public class VentanaJugador extends javax.swing.JFrame {
             turnoJugador=1;
         }
         // muestra el turno del jugador
-         jLabel1.setText("Turno del Jugador "+turnoJugador);
+        // jLabel1.setText("Turno del Jugador "+turnoJugador);
         
         try {
             // como el cliente dio clic debe enviar al servidor las coordenadas
             // el servidor se las pasara al thread cliente para que este
             // las muestre (haga el marcar)
             // envia las coordenadas
-            cliente.salida.writeInt(1);
-            cliente.salida.writeInt(columna);
-            cliente.salida.writeInt(fila);
+            jugador.salidaObject.writeInt(1);
+            jugador.salidaObject.writeInt(columna);
+            jugador.salidaObject.writeInt(fila);
         } catch (IOException ex) {
             
         }
@@ -325,12 +341,6 @@ public class VentanaJugador extends javax.swing.JFrame {
             return true;
         
         return false;
-    }
-    
-    // set el nombre del enemigo
-    public void setEnemigo(String enem)
-    {
-        lblEnemigo.setText("vs. "+enem);
     }                                      
 /*
 private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -392,8 +402,8 @@ private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Enviar;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jp_TableroEnemigo;
     private javax.swing.JPanel jp_TableroJugador;
     private javax.swing.JTextArea txa_Mensaje;
     private javax.swing.JTextField txf_Mensaje;
