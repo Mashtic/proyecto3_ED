@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,10 +28,39 @@ public class Server {
     
     public void runServer(){
         try {
-            ServerSocket server= new ServerSocket(5000);
+            int cantJugadores=Integer.parseInt(JOptionPane.showInputDialog("Cantidad de Jugadores :"));
+            if (cantJugadores<=4&&cantJugadores>=2){
+               ServerSocket server= new ServerSocket(5000);
+                ventana.mostrar("Servidor activo");
+                ventana.mostrar("Esperando Conexiones...");
+                while(listaJugadores.size()<=cantJugadores){
+                    jugador=server.accept();
+                    listaJugadores.add(jugador);
+                    threadServer hiloServer= new threadServer(jugador,this,listaJugadores.size()-1);
+                    hilosServer.add(hiloServer);
+                }
+                for (threadServer thread : hilosServer) {
+                    ArrayList<threadServer> copiaHilos = new ArrayList<threadServer>();
+                    for (threadServer threadComp : hilosServer){
+                        if (!threadComp.equals(thread)){
+                            copiaHilos.add(threadComp);
+                        }
+                    }
+                    thread.listaEnemigo=copiaHilos;
+                }
+                while (true) 
+                {
+
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(ventana, "El número de jugadores debe ser mayor o igual a 2 y menor o igual a 4", 
+                        "Cantidad de jugadores incorrecta", JOptionPane.ERROR_MESSAGE);
+                runServer();
+            }
             
             
-        } catch (IOException ex) {}
+        } catch (IOException ex) {ventana.mostrar("ERROR ... en el servidor");}
     }
     
 }

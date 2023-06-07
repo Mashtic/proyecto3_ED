@@ -9,14 +9,17 @@ package Server;
  * @author fabia
  */
 public class VentanaServer extends javax.swing.JFrame {
-
+    Server serv;
     /**
      * Creates new form VentanaServer
      */
     public VentanaServer() {
         initComponents();
+        serv=new Server(this);
     }
-
+    public void mostrar(String str){
+        txa_Conexiones.append(str+"\n");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,13 +30,13 @@ public class VentanaServer extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txa_Conexiones = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txa_Conexiones.setColumns(20);
+        txa_Conexiones.setRows(5);
+        jScrollPane1.setViewportView(txa_Conexiones);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,16 +85,21 @@ public class VentanaServer extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaServer().setVisible(true);
             }
         });
+        */
+        VentanaServer v=new VentanaServer();
+        v.setVisible(true);
+        v.serv.runServer();
+        
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txa_Conexiones;
     // End of variables declaration//GEN-END:variables
 }
