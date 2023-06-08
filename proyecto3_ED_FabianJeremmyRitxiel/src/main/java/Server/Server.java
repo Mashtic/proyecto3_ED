@@ -38,6 +38,7 @@ public class Server {
                     listaJugadores.add(jugador);
                     threadServer hiloServer= new threadServer(jugador,this,listaJugadores.size()-1);
                     hilosServer.add(hiloServer);
+                    hiloServer.start();
                 }
                 for (threadServer thread : hilosServer) {
                     ArrayList<threadServer> copiaHilos = new ArrayList<threadServer>();

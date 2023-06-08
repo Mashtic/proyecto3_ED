@@ -6,6 +6,8 @@ package com.mycompany.proyecto3_ed_fabianjeremmyritxiel;
 
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -23,6 +25,7 @@ public class VentanaJugador extends javax.swing.JFrame {
         initComponents();
         //jp_TableroEnemigo.setLayout(null);
         generarTablero();
+        jugador= new Jugador(this);
     }
 
     /**
@@ -40,6 +43,60 @@ public class VentanaJugador extends javax.swing.JFrame {
         txa_Mensaje = new javax.swing.JTextArea();
         txf_Mensaje = new javax.swing.JTextField();
         btn_Enviar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txa_Jugadas = new javax.swing.JTextArea();
+        btn_Iniciar = new javax.swing.JButton();
+        btn_PonerFuente = new javax.swing.JButton();
+        btn_PonerMercado = new javax.swing.JButton();
+        btn_PonerArmeria = new javax.swing.JButton();
+        btn_PonerConector = new javax.swing.JButton();
+        btn_PonerMina = new javax.swing.JButton();
+        btn_PonerTemplo = new javax.swing.JButton();
+        btn_Mercado = new javax.swing.JButton();
+        btn_CanonBB = new javax.swing.JButton();
+        btn_Canon = new javax.swing.JButton();
+        btn_CanonM = new javax.swing.JButton();
+        btn_Bomba = new javax.swing.JButton();
+        btn_BarcoF = new javax.swing.JButton();
+        btn_Escudo = new javax.swing.JButton();
+        btn_TaboleroP1 = new javax.swing.JButton();
+        btn_TableroP2 = new javax.swing.JButton();
+        btn_TaberoP3 = new javax.swing.JButton();
+        btn_TableroP4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lbl_CantConector = new javax.swing.JLabel();
+        lbl_CantArmeria = new javax.swing.JLabel();
+        lbl_CantMina = new javax.swing.JLabel();
+        lbl_CantTemplo = new javax.swing.JLabel();
+        lbl_CantFuente = new javax.swing.JLabel();
+        lbl_CantMercado = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        lbl_CantEscudo = new javax.swing.JLabel();
+        lbl_CantBarcoF = new javax.swing.JLabel();
+        lbl_CantCanonBB = new javax.swing.JLabel();
+        lbl_CantBomba = new javax.swing.JLabel();
+        lbl_CantCanonM = new javax.swing.JLabel();
+        lbl_CantCanon = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        lbl_CantKraken = new javax.swing.JLabel();
+        btn_Kraken = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        lbl_CantHierro = new javax.swing.JLabel();
+        lbl_CantPlata = new javax.swing.JLabel();
+        btn_Horizontal = new javax.swing.JButton();
+        btn_Vertical = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +133,164 @@ public class VentanaJugador extends javax.swing.JFrame {
         });
 
         btn_Enviar.setText("Enviar");
+        btn_Enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EnviarActionPerformed(evt);
+            }
+        });
+
+        txa_Jugadas.setColumns(20);
+        txa_Jugadas.setRows(5);
+        jScrollPane2.setViewportView(txa_Jugadas);
+
+        btn_Iniciar.setText("Iniciar");
+        btn_Iniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_IniciarActionPerformed(evt);
+            }
+        });
+
+        btn_PonerFuente.setText("Fuente");
+        btn_PonerFuente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PonerFuenteActionPerformed(evt);
+            }
+        });
+
+        btn_PonerMercado.setText("Mercado");
+        btn_PonerMercado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PonerMercadoActionPerformed(evt);
+            }
+        });
+
+        btn_PonerArmeria.setText("Armería");
+        btn_PonerArmeria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PonerArmeriaActionPerformed(evt);
+            }
+        });
+
+        btn_PonerConector.setText("Conector");
+        btn_PonerConector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PonerConectorActionPerformed(evt);
+            }
+        });
+
+        btn_PonerMina.setText("Mina");
+        btn_PonerMina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PonerMinaActionPerformed(evt);
+            }
+        });
+
+        btn_PonerTemplo.setText("Templo");
+        btn_PonerTemplo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PonerTemploActionPerformed(evt);
+            }
+        });
+
+        btn_Mercado.setText("Acceder Mercado");
+
+        btn_CanonBB.setText("Cañon BB");
+
+        btn_Canon.setText("Cañon");
+
+        btn_CanonM.setText("Cañon M");
+
+        btn_Bomba.setText("Bomba");
+
+        btn_BarcoF.setText("Barco F");
+
+        btn_Escudo.setText("Escudo");
+
+        btn_TaboleroP1.setText("P1");
+
+        btn_TableroP2.setText("P2");
+
+        btn_TaberoP3.setText("P3");
+
+        btn_TableroP4.setText("P4");
+
+        jLabel1.setText("Inventario");
+
+        jLabel2.setText("Fuentes");
+
+        jLabel3.setText("Mercados");
+
+        jLabel4.setText("Conectores");
+
+        jLabel5.setText("Armerias");
+
+        jLabel6.setText("Minas");
+
+        jLabel7.setText("Templos");
+
+        lbl_CantConector.setText("0");
+
+        lbl_CantArmeria.setText("0");
+
+        lbl_CantMina.setText("0");
+
+        lbl_CantTemplo.setText("0");
+
+        lbl_CantFuente.setText("0");
+
+        lbl_CantMercado.setText("0");
+
+        jLabel14.setText("Cañon");
+
+        jLabel15.setText("Cañon M.");
+
+        jLabel16.setText("Bomba");
+
+        jLabel17.setText("Cañon B.B.");
+
+        jLabel18.setText("Barco F.");
+
+        jLabel19.setText("Escudos");
+
+        lbl_CantEscudo.setText("0");
+
+        lbl_CantBarcoF.setText("0");
+
+        lbl_CantCanonBB.setText("0");
+
+        lbl_CantBomba.setText("0");
+
+        lbl_CantCanonM.setText("0");
+
+        lbl_CantCanon.setText("0");
+
+        jLabel26.setText("Krakens");
+
+        lbl_CantKraken.setText("0");
+
+        btn_Kraken.setText("Kraken");
+
+        jLabel28.setText("Plata ($)");
+
+        jLabel29.setText("Hierro (Kg)");
+
+        lbl_CantHierro.setText("0");
+
+        lbl_CantPlata.setText("0");
+
+        btn_Horizontal.setText("Horizontal");
+        btn_Horizontal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_HorizontalActionPerformed(evt);
+            }
+        });
+
+        btn_Vertical.setText("Vertical");
+        btn_Vertical.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VerticalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,31 +299,249 @@ public class VentanaJugador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jp_TableroJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jp_TableroEnemigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txf_Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_Enviar)))
-                .addContainerGap(172, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_Enviar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_Iniciar)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jp_TableroJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(btn_PonerMina)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_PonerTemplo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn_PonerFuente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_PonerMercado)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_PonerConector)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_PonerArmeria))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(btn_Mercado, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_Canon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_BarcoF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_CanonM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_Escudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_Bomba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_Kraken, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_CanonBB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE))
+                            .addComponent(jp_TableroEnemigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(67, 67, 67)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel3)
+                                                    .addComponent(jLabel2)
+                                                    .addComponent(jLabel4)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(jLabel6)
+                                                    .addComponent(jLabel7))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(lbl_CantFuente, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                                    .addComponent(lbl_CantMercado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(lbl_CantConector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(lbl_CantArmeria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(lbl_CantMina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(lbl_CantTemplo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLabel15)
+                                                    .addComponent(jLabel14)
+                                                    .addComponent(jLabel16)
+                                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel18)
+                                                    .addComponent(jLabel19)
+                                                    .addComponent(jLabel26)
+                                                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lbl_CantHierro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lbl_CantPlata, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lbl_CantKraken, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(lbl_CantCanon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(lbl_CantCanonM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(lbl_CantBomba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(lbl_CantCanonBB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(lbl_CantBarcoF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(lbl_CantEscudo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btn_TaboleroP1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btn_TableroP2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btn_TaberoP3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btn_TableroP4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 12, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_Horizontal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_Vertical, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(70, 70, 70))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jp_TableroEnemigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jp_TableroJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jp_TableroEnemigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jp_TableroJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btn_PonerFuente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_PonerMercado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btn_PonerConector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_PonerArmeria, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btn_PonerMina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_PonerTemplo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btn_Mercado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btn_Canon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_CanonM, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_Bomba, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_CanonBB, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_BarcoF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btn_Escudo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btn_Kraken, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_CantFuente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantMercado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantConector)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantArmeria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantMina)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantTemplo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel19))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_CantCanon)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantCanonM)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantBomba)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantCanonBB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantBarcoF)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_CantEscudo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(lbl_CantKraken))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28)
+                            .addComponent(lbl_CantPlata))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel29)
+                            .addComponent(lbl_CantHierro))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_TaberoP3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_TableroP4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_TaboleroP1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_TableroP2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addComponent(btn_Horizontal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_Vertical)
+                        .addGap(71, 71, 71)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txf_Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Enviar))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(btn_Enviar)
+                    .addComponent(btn_Iniciar))
+                .addContainerGap())
         );
 
         pack();
@@ -117,6 +550,64 @@ public class VentanaJugador extends javax.swing.JFrame {
     private void txf_MensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_MensajeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txf_MensajeActionPerformed
+
+    private void btn_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EnviarActionPerformed
+        try {
+            // se toma lo escrito
+            String mensaje = txf_Mensaje.getText();
+            // se muestra en el text area
+            txa_Mensaje.append(jugador.getNombre()+"> "+ mensaje + "\n");
+            // se limpia el textfield
+            txf_Mensaje.setText("");
+
+            // envia al server la opcion 4 para que le pase al enemigo
+            // lo escrito
+            jugador.salidaObject.writeInt(4);
+            // le envia el mensaje
+            jugador.salidaObject.writeUTF(jugador.getNombre()+"> "+mensaje);
+            
+        } catch (IOException ex) {
+
+        }
+    }//GEN-LAST:event_btn_EnviarActionPerformed
+
+    private void btn_IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IniciarActionPerformed
+        try {
+            jugador.conexion();
+        } catch (IOException ex) {}
+    }//GEN-LAST:event_btn_IniciarActionPerformed
+
+    private void btn_PonerFuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PonerFuenteActionPerformed
+        tipoEstructura=1;
+    }//GEN-LAST:event_btn_PonerFuenteActionPerformed
+
+    private void btn_PonerMercadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PonerMercadoActionPerformed
+        tipoEstructura=2;
+    }//GEN-LAST:event_btn_PonerMercadoActionPerformed
+
+    private void btn_PonerConectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PonerConectorActionPerformed
+        tipoEstructura=3;
+    }//GEN-LAST:event_btn_PonerConectorActionPerformed
+
+    private void btn_PonerArmeriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PonerArmeriaActionPerformed
+        tipoEstructura=4;
+    }//GEN-LAST:event_btn_PonerArmeriaActionPerformed
+
+    private void btn_PonerMinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PonerMinaActionPerformed
+        tipoEstructura=5;
+    }//GEN-LAST:event_btn_PonerMinaActionPerformed
+
+    private void btn_PonerTemploActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PonerTemploActionPerformed
+        tipoEstructura=6;
+    }//GEN-LAST:event_btn_PonerTemploActionPerformed
+
+    private void btn_HorizontalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HorizontalActionPerformed
+        horizontal=1;
+    }//GEN-LAST:event_btn_HorizontalActionPerformed
+
+    private void btn_VerticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VerticalActionPerformed
+        horizontal=0;
+    }//GEN-LAST:event_btn_VerticalActionPerformed
     
     Jugador jugador;
     //----------------------------------
@@ -129,12 +620,18 @@ public class VentanaJugador extends javax.swing.JFrame {
     int[][] tableroLogico = new int[DIMENSIONES][DIMENSIONES];
     int[][] tableroLogicoEnemigo = new int[DIMENSIONES][DIMENSIONES];
     // crea imagen blanco
-   ImageIcon iconoVacio = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\wcvacio.GIF");
-    // crea imagen X
+    ImageIcon iconoVacio = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\wcvacio.GIF");
     ImageIcon iconoEquiz = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\cequiz.GIF");
-    // crea la imagen circulo
     ImageIcon iconoCirculo = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\ccirculo.GIF");
+    ImageIcon iconoFuente= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\fuente.png");
+    ImageIcon iconoMercado= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\mercado.png");
+    ImageIcon iconoConector= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\conector.png");
+    ImageIcon iconoArmeria= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\armeria.png");
+    ImageIcon iconoMina= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\mina.png");
+    ImageIcon iconoTemplo= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\templo.png");
     
+    int tipoEstructura=0;
+    int horizontal=1;
     int turnoJugador=1;
     
     //numero de jugador 1 o 2
@@ -153,18 +650,86 @@ public class VentanaJugador extends javax.swing.JFrame {
                 jp_TableroJugador.add(tableroLabels[i][j]);
                 jp_TableroEnemigo.add(tableroEnemigo[i][j]);
                 // coloca dimensiones y localidad
-                tableroLabels[i][j].setBounds(19*i, 19*j, 21, 21);
-                tableroEnemigo[i][j].setBounds(19*i, 19*j, 21, 21);
+                tableroLabels[i][j].setBounds(19*i, 19*j, 22, 22);
+                tableroEnemigo[i][j].setBounds(19*i, 19*j, 22, 22);
                 // coloca el comand como i , j 
                 tableroLabels[i][j].setActionCommand(i+","+j);//i+","+j
                 tableroEnemigo[i][j].setActionCommand(i+","+j);//i+","+j
                 
-                //aclickSobreTablero(evt);ñade el listener al boton
+                //añade el listener al boton
                 tableroLabels[i][j].addMouseListener(new MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                         
                     clickSobreTablero(evt);
                     
+                }
+                
+                public void mouseEntered(java.awt.event.MouseEvent evt){
+                    switch (tipoEstructura) {
+                        case 0:
+                            //
+                            break;
+                        case 1:
+                            mouseSobreTableroFuente(evt);
+                            System.out.println("Fuente"); 
+                            break;
+                        case 2:
+                            mouseSobreTableroMercado(evt);
+                            System.out.println("Mercado"); 
+                            break;
+                        case 3:
+                            mouseSobreTableroConector(evt);
+                            System.out.println("Conector"); 
+                            break;
+                        case 4:
+                            mouseSobreTableroArmeria(evt);
+                            System.out.println("Armeria"); 
+                            break;
+                        case 5:
+                            mouseSobreTableroMina(evt);
+                            System.out.println("Mina"); 
+                            break;
+                        case 6:
+                            mouseSobreTableroTemplo(evt);
+                            System.out.println("Templo"); 
+                            break;    
+                        default:
+                            throw new AssertionError();
+                    }
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    switch (tipoEstructura) {
+                        case 0:
+                            //
+                            break;
+                        case 1:
+                            borrarMouseSobreTableroFuente(evt);
+                            System.out.println("Fuente"); 
+                            break;
+                        case 2:
+                            borrarMouseSobreTableroMercado(evt);
+                            System.out.println("Mercado"); 
+                            break;
+                        case 3:
+                            borrarMouseSobreTableroConector(evt);
+                            System.out.println("Conector"); 
+                            break;
+                        case 4:
+                            borrarMouseSobreTableroArmeria(evt);
+                            System.out.println("Armeria"); 
+                            break;
+                        case 5:
+                            borrarMouseSobreTableroMina(evt);
+                            System.out.println("Mina"); 
+                            break;
+                        case 6:
+                            borrarMouseSobreTableroTemplo(evt);
+                            System.out.println("Templo"); 
+                            break;    
+                        default:
+                            throw new AssertionError();
+                    }
+                    System.out.println("chao"); 
                 }
                 });
                 tableroEnemigo[i][j].addMouseListener(new MouseAdapter() {
@@ -248,6 +813,7 @@ public class VentanaJugador extends javax.swing.JFrame {
     {
         // obtiene el boton 
         JButton botonTemp = (JButton)evt.getComponent();
+        
         // obtiene el i,j de action command del boton
         String identificadorBoton = botonTemp.getActionCommand();
         
@@ -302,8 +868,241 @@ public class VentanaJugador extends javax.swing.JFrame {
             reiniciarJuego();
         }      
     }
-    
-    
+    void mouseSobreTableroFuente(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            tableroLabels[columna][fila].setIcon(iconoFuente);
+            tableroLabels[columna+1][fila].setIcon(iconoFuente);
+            tableroLabels[columna][fila+1].setIcon(iconoFuente);
+            tableroLabels[columna+1][fila+1].setIcon(iconoFuente);
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void borrarMouseSobreTableroFuente(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            tableroLabels[columna][fila].setIcon(iconoVacio);
+            tableroLabels[columna+1][fila].setIcon(iconoVacio);
+            tableroLabels[columna][fila+1].setIcon(iconoVacio);
+            tableroLabels[columna+1][fila+1].setIcon(iconoVacio);
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void mouseSobreTableroMercado(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            if (horizontal==1) {
+                tableroLabels[columna][fila].setIcon(iconoMercado);
+                tableroLabels[columna+1][fila].setIcon(iconoMercado);
+            }
+            else{
+                tableroLabels[columna][fila].setIcon(iconoMercado);
+                tableroLabels[columna][fila+1].setIcon(iconoMercado);
+            }
+         
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void borrarMouseSobreTableroMercado(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            if (horizontal==1) {
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+            }
+            else{
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+            }
+         
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void mouseSobreTableroConector(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        
+        tableroLabels[columna][fila].setIcon(iconoConector);
+
+    }
+    void borrarMouseSobreTableroConector(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+
+        tableroLabels[columna][fila].setIcon(iconoVacio);   
+    }
+    void mouseSobreTableroArmeria(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            if (horizontal==1) {
+                tableroLabels[columna][fila].setIcon(iconoArmeria);
+                tableroLabels[columna+1][fila].setIcon(iconoArmeria);
+            }
+            else{
+                tableroLabels[columna][fila].setIcon(iconoArmeria);
+                tableroLabels[columna][fila+1].setIcon(iconoArmeria);
+            }
+         
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void borrarMouseSobreTableroArmeria(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            if (horizontal==1) {
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+            }
+            else{
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+            }
+         
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void mouseSobreTableroMina(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            if (horizontal==1) {
+                tableroLabels[columna][fila].setIcon(iconoMina);
+                tableroLabels[columna+1][fila].setIcon(iconoMina);
+            }
+            else{
+                tableroLabels[columna][fila].setIcon(iconoMina);
+                tableroLabels[columna][fila+1].setIcon(iconoMina);
+            }
+         
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void borrarMouseSobreTableroMina(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            if (horizontal==1) {
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+            }
+            else{
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+            }
+         
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void mouseSobreTableroTemplo(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            if (horizontal==1) {
+                tableroLabels[columna][fila].setIcon(iconoTemplo);
+                tableroLabels[columna+1][fila].setIcon(iconoTemplo);
+            }
+            else{
+                tableroLabels[columna][fila].setIcon(iconoTemplo);
+                tableroLabels[columna][fila+1].setIcon(iconoTemplo);
+            }
+         
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+    void borrarMouseSobreTableroTemplo(java.awt.event.MouseEvent evt){
+        JButton botonTemp= (JButton)evt.getComponent();
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+        try {
+            if (horizontal==1) {
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+            }
+            else{
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+            }
+         
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
     boolean haGanado()
     {
         
@@ -342,29 +1141,9 @@ public class VentanaJugador extends javax.swing.JFrame {
         
         return false;
     }                                      
-/*
-private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        try {
-            // se toma lo escrito
-            String mensaje = txfMensaje.getText();
-            // se muestra en el text area
-            txaMensajes.append(cliente.nomCliente+"> "+ mensaje + "\n");
-            // se limpia el textfield
-            txfMensaje.setText("");
-
-            // envia al server la opcion 4 para que le pase al enemigo
-            // lo escrito
-            cliente.salida.writeInt(4);
-            // le envia el mensaje
-            cliente.salida.writeUTF(cliente.nomCliente+"> "+mensaje);
-            
-        } catch (IOException ex) {
-
-        }
-    
-    
-} 
-*/
+    public void mostrar(String str){
+        txa_Mensaje.append(str+"\n");
+    }
     /**
      * @param args the command line arguments
      */
@@ -399,12 +1178,66 @@ private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_BarcoF;
+    private javax.swing.JButton btn_Bomba;
+    private javax.swing.JButton btn_Canon;
+    private javax.swing.JButton btn_CanonBB;
+    private javax.swing.JButton btn_CanonM;
     private javax.swing.JButton btn_Enviar;
+    private javax.swing.JButton btn_Escudo;
+    private javax.swing.JButton btn_Horizontal;
+    private javax.swing.JButton btn_Iniciar;
+    private javax.swing.JButton btn_Kraken;
+    private javax.swing.JButton btn_Mercado;
+    private javax.swing.JButton btn_PonerArmeria;
+    private javax.swing.JButton btn_PonerConector;
+    private javax.swing.JButton btn_PonerFuente;
+    private javax.swing.JButton btn_PonerMercado;
+    private javax.swing.JButton btn_PonerMina;
+    private javax.swing.JButton btn_PonerTemplo;
+    private javax.swing.JButton btn_TaberoP3;
+    private javax.swing.JButton btn_TableroP2;
+    private javax.swing.JButton btn_TableroP4;
+    private javax.swing.JButton btn_TaboleroP1;
+    private javax.swing.JButton btn_Vertical;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jp_TableroEnemigo;
     private javax.swing.JPanel jp_TableroJugador;
+    private javax.swing.JLabel lbl_CantArmeria;
+    private javax.swing.JLabel lbl_CantBarcoF;
+    private javax.swing.JLabel lbl_CantBomba;
+    private javax.swing.JLabel lbl_CantCanon;
+    private javax.swing.JLabel lbl_CantCanonBB;
+    private javax.swing.JLabel lbl_CantCanonM;
+    private javax.swing.JLabel lbl_CantConector;
+    private javax.swing.JLabel lbl_CantEscudo;
+    private javax.swing.JLabel lbl_CantFuente;
+    private javax.swing.JLabel lbl_CantHierro;
+    private javax.swing.JLabel lbl_CantKraken;
+    private javax.swing.JLabel lbl_CantMercado;
+    private javax.swing.JLabel lbl_CantMina;
+    private javax.swing.JLabel lbl_CantPlata;
+    private javax.swing.JLabel lbl_CantTemplo;
+    private javax.swing.JTextArea txa_Jugadas;
     private javax.swing.JTextArea txa_Mensaje;
     private javax.swing.JTextField txf_Mensaje;
     // End of variables declaration//GEN-END:variables

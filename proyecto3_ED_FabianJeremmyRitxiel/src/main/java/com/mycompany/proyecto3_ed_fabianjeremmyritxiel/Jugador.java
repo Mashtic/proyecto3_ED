@@ -33,7 +33,7 @@ public class Jugador {
    {
       try {
           // se conecta con dos sockets al server, uno comunicacion otro msjes
-         player = new Socket(Jugador.IP_SERVER, 8081);
+         player = new Socket(Jugador.IP_SERVER, 5000);
          // inicializa las entradas-lectura y salidas-escritura
           System.out.println("Aquivoyyyyyyyy1");
          //entrada = new DataInputStream(player.getInputStream());
@@ -46,8 +46,11 @@ public class Jugador {
          // es lo primero que envia al server
          // el thread servidor esta pendiente de leer el nombre antes de entrar
          // al while para leer opciones
+          System.out.println("Auxilio1");
          salidaObject = new ObjectOutputStream(player.getOutputStream());
+          System.out.println("Auxilio2S");
          entradaObject = new ObjectInputStream(player.getInputStream());
+         System.out.println("Auxilio3S");
          salidaObject.writeUTF(nomPlayer);
          salidaObject.flush();
          System.out.println("1. Envia el nombre del cliente: "+nomPlayer);

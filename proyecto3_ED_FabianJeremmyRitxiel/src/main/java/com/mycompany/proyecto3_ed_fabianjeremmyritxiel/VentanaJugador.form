@@ -24,21 +24,157 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="471" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="jp_TableroJugador" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jp_TableroEnemigo" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="txf_Mensaje" min="-2" pref="374" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_Enviar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btn_Iniciar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="393" max="-2" attributes="0"/>
+                              <Component id="jp_TableroJugador" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="btn_PonerMina" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btn_PonerTemplo" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="btn_PonerFuente" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btn_PonerMercado" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btn_PonerConector" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btn_PonerArmeria" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="btn_Mercado" min="-2" pref="156" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btn_Canon" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="btn_BarcoF" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btn_CanonM" max="32767" attributes="0"/>
+                                  <Component id="btn_Escudo" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btn_Bomba" max="32767" attributes="0"/>
+                                  <Component id="btn_Kraken" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btn_CanonBB" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="66" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jp_TableroEnemigo" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="lbl_CantFuente" pref="39" max="32767" attributes="0"/>
+                                                  <Component id="lbl_CantMercado" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lbl_CantConector" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lbl_CantArmeria" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lbl_CantMina" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lbl_CantTemplo" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel29" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel28" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lbl_CantHierro" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                                                  <Component id="lbl_CantPlata" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                                                  <Component id="lbl_CantKraken" min="-2" pref="39" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="lbl_CantCanon" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="lbl_CantCanonM" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="lbl_CantBomba" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="lbl_CantCanonBB" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="lbl_CantBarcoF" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="lbl_CantEscudo" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btn_TaboleroP1" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <Component id="btn_TableroP2" min="-2" pref="80" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btn_TaberoP3" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <Component id="btn_TableroP4" min="-2" pref="80" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btn_Horizontal" max="32767" attributes="0"/>
+                                  <Component id="btn_Vertical" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="172" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,18 +182,159 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jp_TableroEnemigo" min="-2" max="-2" attributes="0"/>
-                  <Component id="jp_TableroJugador" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jp_TableroEnemigo" min="-2" max="-2" attributes="0"/>
+                          <Component id="jp_TableroJugador" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btn_PonerFuente" max="32767" attributes="0"/>
+                                      <Component id="btn_PonerMercado" min="-2" pref="45" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btn_PonerConector" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btn_PonerArmeria" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btn_PonerMina" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btn_PonerTemplo" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btn_Mercado" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btn_Canon" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Component id="btn_CanonM" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Component id="btn_Bomba" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Component id="btn_CanonBB" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btn_BarcoF" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="btn_Escudo" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="btn_Kraken" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lbl_CantFuente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantMercado" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantConector" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantArmeria" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantMina" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantTemplo" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbl_CantCanon" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantCanonM" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantBomba" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantCanonBB" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantBarcoF" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbl_CantEscudo" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_CantKraken" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_CantPlata" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_CantHierro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btn_TaberoP3" min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btn_TableroP4" min="-2" pref="45" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btn_TaboleroP1" min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btn_TableroP2" min="-2" pref="45" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="btn_Horizontal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_Vertical" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txf_Mensaje" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_Enviar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_Iniciar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,6 +394,311 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enviar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EnviarActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txa_Jugadas">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="btn_Iniciar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Iniciar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_IniciarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_PonerFuente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fuente"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_PonerFuenteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_PonerMercado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mercado"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_PonerMercadoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_PonerArmeria">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Armer&#xed;a"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_PonerArmeriaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_PonerConector">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Conector"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_PonerConectorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_PonerMina">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mina"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_PonerMinaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_PonerTemplo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Templo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_PonerTemploActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Mercado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Acceder Mercado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_CanonBB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ca&#xf1;on BB"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Canon">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ca&#xf1;on"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_CanonM">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ca&#xf1;on M"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Bomba">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bomba"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_BarcoF">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Barco F"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Escudo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Escudo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_TaboleroP1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="P1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_TableroP2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="P2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_TaberoP3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="P3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_TableroP4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="P4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Inventario"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fuentes"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mercados"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Conectores"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Armerias"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Minas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Templos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantConector">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantArmeria">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantMina">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantTemplo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantFuente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantMercado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel14">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ca&#xf1;on"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel15">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ca&#xf1;on M."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel16">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bomba"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel17">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ca&#xf1;on B.B."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel18">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Barco F."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel19">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Escudos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantEscudo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantBarcoF">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantCanonBB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantBomba">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantCanonM">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantCanon">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel26">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Krakens"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantKraken">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Kraken">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kraken"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel28">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Plata ($)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel29">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hierro (Kg)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantHierro">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_CantPlata">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Horizontal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Horizontal"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_HorizontalActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Vertical">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Vertical"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_VerticalActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

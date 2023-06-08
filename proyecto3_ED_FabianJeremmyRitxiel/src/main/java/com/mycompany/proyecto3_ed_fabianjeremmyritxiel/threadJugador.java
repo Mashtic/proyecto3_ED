@@ -70,10 +70,10 @@ public class threadJugador extends Thread{
                     System.out.println("Se escogio opcion 3");
                   break;
                 case 4:
-//                    // lee el mensaje
-//                    menser = entrada.readUTF();
-//                    // muestra el mensjae en pantalla.
-//                    vPlayer.mostrar(menser);
+                    // lee el mensaje
+                    menser = entrada.readUTF();
+                    // muestra el mensjae en pantalla.
+                    ventana.mostrar(menser);
                     System.out.println("Se escogio opcion 4");
                 break;
                 
