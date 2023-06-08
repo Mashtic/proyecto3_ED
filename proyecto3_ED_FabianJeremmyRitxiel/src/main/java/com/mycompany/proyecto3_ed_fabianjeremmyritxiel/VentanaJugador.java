@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Cantidad por conector y tiempo para fabricar armas
  * @author fabia
  */
 public class VentanaJugador extends javax.swing.JFrame {
@@ -22,10 +22,14 @@ public class VentanaJugador extends javax.swing.JFrame {
      * Creates new form VentanaJugador
      */
     public VentanaJugador() {
+        
         initComponents();
+        //jp_TableroJugador.setLayout(null);
         //jp_TableroEnemigo.setLayout(null);
-        generarTablero();
         jugador= new Jugador(this);
+        generarTablero();
+        initImages();
+        
     }
 
     /**
@@ -637,6 +641,16 @@ public class VentanaJugador extends javax.swing.JFrame {
     //numero de jugador 1 o 2
     int numeroJugador = 0;
     
+    
+    void initImages(){
+        btn_PonerFuente.setIcon(iconoFuente);
+        btn_PonerMercado.setIcon(iconoMercado);
+        btn_PonerConector.setIcon(iconoConector);
+        btn_PonerArmeria.setIcon(iconoArmeria);
+        btn_PonerMina.setIcon(iconoMina);
+        btn_PonerTemplo.setIcon(iconoTemplo);
+  
+    }
     void generarTablero()
     {
         for(int i=0;i<DIMENSIONES;i++)
@@ -659,8 +673,39 @@ public class VentanaJugador extends javax.swing.JFrame {
                 //añade el listener al boton
                 tableroLabels[i][j].addMouseListener(new MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        
-                    clickSobreTablero(evt);
+                    
+                    switch (tipoEstructura) {
+                        case 0:
+                            //
+                            break;
+                        case 1:
+                            clickSobreTableroFuente(evt);
+                            System.out.println("Estoy aqui"); 
+                            break;
+                        case 2:
+                            clickSobreTableroMercado(evt);
+                            System.out.println("Mercado"); 
+                            break;
+                        case 3:
+                            clickSobreTableroConector(evt);
+                            System.out.println("Conector"); 
+                            break;
+                        case 4:
+                            clickSobreTableroArmeria(evt);
+                            System.out.println("Armeria"); 
+                            break;
+                        case 5:
+                            clickSobreTableroMina(evt);
+                            System.out.println("Mina"); 
+                            break;
+                        case 6:
+                            clickSobreTableroTemplo(evt);
+                            System.out.println("Templo"); 
+                            break;    
+                        default:
+                            throw new AssertionError();
+                    }
+                    
                     
                 }
                 
@@ -868,6 +913,485 @@ public class VentanaJugador extends javax.swing.JFrame {
             reiniciarJuego();
         }      
     }
+    
+    public void clickSobreTableroFuente(java.awt.event.MouseEvent evt)
+    {
+        // obtiene el boton 
+        JButton botonTemp = (JButton)evt.getComponent();
+        
+        // obtiene el i,j de action command del boton
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+       
+        
+        // si ya se disparo entonces nada
+        if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna+1][fila]!=0)||
+                (tableroLogico[columna][fila+1]!=0)||(tableroLogico[columna+1][fila+1]!=0))
+            return;
+        
+        // si es mi turno continua, si no return
+//        if (numeroJugador != turnoJugador)
+//            return;
+        
+        // como es turno del cliente marca el logico con su numero
+        //tableroLogico[columna][fila]=turnoJugador;
+        // si era el jugador 1 marca con x y cambia el turno a jugador 2
+        if (numeroJugador != 10)
+        {
+            try {
+            tableroLabels[columna][fila].setIcon(iconoFuente);
+            tableroLabels[columna+1][fila].setIcon(iconoFuente);
+            tableroLabels[columna][fila+1].setIcon(iconoFuente);
+            tableroLabels[columna+1][fila+1].setIcon(iconoFuente);
+            tableroLogico[columna][fila]=tipoEstructura;
+            tableroLogico[columna+1][fila]=tipoEstructura;
+            tableroLogico[columna][fila+1]=tipoEstructura;
+            tableroLogico[columna+1][fila+1]=tipoEstructura;
+                             
+                    
+            } catch (ArrayIndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
+                            "Posiciones fuera de rango", JOptionPane.ERROR_MESSAGE);
+            }
+            turnoJugador=2;
+        }
+//        else
+//        {
+//            // si era jugador 3, marca circulo y turno jugador 1
+//            tableroLabels[columna][fila].setIcon(iconoCirculo);
+//            turnoJugador=1;
+//        }
+        // muestra el turno del jugador
+        // jLabel1.setText("Turno del Jugador "+turnoJugador);
+        
+        //try {
+            // como el cliente dio clic debe enviar al servidor las coordenadas
+            // el servidor se las pasara al thread cliente para que este
+            // las muestre (haga el marcar)
+            // envia las coordenadas
+            //jugador.salidaObject.writeInt(1);
+            //jugador.salidaObject.writeInt(columna);
+            //jugador.salidaObject.writeInt(fila);
+//        } catch (IOException ex) {
+//            
+//        }
+         
+        // si gano el jugador 1 lo indica
+        if(haGanado())
+        {
+            JOptionPane.showMessageDialog(null, "Ha ganado el jugador 1");
+            reiniciarJuego();
+        }      
+    }
+    public void clickSobreTableroMercado(java.awt.event.MouseEvent evt)
+    {
+        // obtiene el boton 
+        JButton botonTemp = (JButton)evt.getComponent();
+        
+        // obtiene el i,j de action command del boton
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+       
+        
+        // si ya se disparo entonces nada
+        if (horizontal==1){
+           if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna+1][fila]!=0))
+                return; 
+        }
+        else{
+            if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna][fila+1]!=0))
+                return;
+        }
+        
+        
+        // si es mi turno continua, si no return
+//        if (numeroJugador != turnoJugador)
+//            return;
+        
+        // como es turno del cliente marca el logico con su numero
+        //tableroLogico[columna][fila]=turnoJugador;
+        // si era el jugador 1 marca con x y cambia el turno a jugador 2
+        if (numeroJugador != 10)
+        {
+            try {
+                if(horizontal==1){
+                    tableroLabels[columna][fila].setIcon(iconoMercado);
+                    tableroLogico[columna][fila]=tipoEstructura;
+                    tableroLabels[columna+1][fila].setIcon(iconoMercado);
+                    tableroLogico[columna+1][fila]=tipoEstructura;
+                }
+                else{
+                    tableroLabels[columna][fila].setIcon(iconoMercado);
+                    tableroLogico[columna][fila]=tipoEstructura;
+                    tableroLabels[columna][fila+1].setIcon(iconoMercado);
+                    tableroLogico[columna][fila+1]=tipoEstructura;
+                }
+                             
+                    
+            } catch (ArrayIndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
+                            "Posiciones fuera de rango", JOptionPane.ERROR_MESSAGE);
+            }
+            turnoJugador=2;
+        }
+//        else
+//        {
+//            // si era jugador 3, marca circulo y turno jugador 1
+//            tableroLabels[columna][fila].setIcon(iconoCirculo);
+//            turnoJugador=1;
+//        }
+        // muestra el turno del jugador
+        // jLabel1.setText("Turno del Jugador "+turnoJugador);
+        
+        //try {
+            // como el cliente dio clic debe enviar al servidor las coordenadas
+            // el servidor se las pasara al thread cliente para que este
+            // las muestre (haga el marcar)
+            // envia las coordenadas
+            //jugador.salidaObject.writeInt(1);
+            //jugador.salidaObject.writeInt(columna);
+            //jugador.salidaObject.writeInt(fila);
+//        } catch (IOException ex) {
+//            
+//        }
+         
+        // si gano el jugador 1 lo indica
+        if(haGanado())
+        {
+            JOptionPane.showMessageDialog(null, "Ha ganado el jugador 1");
+            reiniciarJuego();
+        }      
+    }
+    public void clickSobreTableroConector(java.awt.event.MouseEvent evt)
+    {
+        // obtiene el boton 
+        JButton botonTemp = (JButton)evt.getComponent();
+        
+        // obtiene el i,j de action command del boton
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+       
+        
+        // si ya se disparo entonces nada
+       
+        if(tableroLogico[columna][fila]!=0)
+            return; 
+        
+        // si es mi turno continua, si no return
+//        if (numeroJugador != turnoJugador)
+//            return;
+        
+        // como es turno del cliente marca el logico con su numero
+        //tableroLogico[columna][fila]=turnoJugador;
+        // si era el jugador 1 marca con x y cambia el turno a jugador 2
+        if (numeroJugador != 10)
+        {
+            try {
+                tableroLabels[columna][fila].setIcon(iconoConector);
+                tableroLogico[columna][fila]=tipoEstructura;
+                             
+                    
+            } catch (ArrayIndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
+                            "Posiciones fuera de rango", JOptionPane.ERROR_MESSAGE);
+            }
+            turnoJugador=2;
+        }
+//        else
+//        {
+//            // si era jugador 3, marca circulo y turno jugador 1
+//            tableroLabels[columna][fila].setIcon(iconoCirculo);
+//            turnoJugador=1;
+//        }
+        // muestra el turno del jugador
+        // jLabel1.setText("Turno del Jugador "+turnoJugador);
+        
+        //try {
+            // como el cliente dio clic debe enviar al servidor las coordenadas
+            // el servidor se las pasara al thread cliente para que este
+            // las muestre (haga el marcar)
+            // envia las coordenadas
+            //jugador.salidaObject.writeInt(1);
+            //jugador.salidaObject.writeInt(columna);
+            //jugador.salidaObject.writeInt(fila);
+//        } catch (IOException ex) {
+//            
+//        }
+         
+        // si gano el jugador 1 lo indica
+        if(haGanado())
+        {
+            JOptionPane.showMessageDialog(null, "Ha ganado el jugador 1");
+            reiniciarJuego();
+        }      
+    }
+    public void clickSobreTableroArmeria(java.awt.event.MouseEvent evt)
+    {
+        // obtiene el boton 
+        JButton botonTemp = (JButton)evt.getComponent();
+        
+        // obtiene el i,j de action command del boton
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+       
+        
+        // si ya se disparo entonces nada
+        if (horizontal==1){
+           if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna+1][fila]!=0))
+                return; 
+        }
+        else{
+            if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna][fila+1]!=0))
+                return;
+        }
+        
+        
+        // si es mi turno continua, si no return
+//        if (numeroJugador != turnoJugador)
+//            return;
+        
+        // como es turno del cliente marca el logico con su numero
+        //tableroLogico[columna][fila]=turnoJugador;
+        // si era el jugador 1 marca con x y cambia el turno a jugador 2
+        if (numeroJugador != 10)
+        {
+            try {
+                if(horizontal==1){
+                    tableroLabels[columna][fila].setIcon(iconoArmeria);
+                    tableroLogico[columna][fila]=tipoEstructura;
+                    tableroLabels[columna+1][fila].setIcon(iconoArmeria);
+                    tableroLogico[columna+1][fila]=tipoEstructura;
+                }
+                else{
+                    tableroLabels[columna][fila].setIcon(iconoArmeria);
+                    tableroLogico[columna][fila]=tipoEstructura;
+                    tableroLabels[columna][fila+1].setIcon(iconoArmeria);
+                    tableroLogico[columna][fila+1]=tipoEstructura;
+                }
+                             
+                    
+            } catch (ArrayIndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
+                            "Posiciones fuera de rango", JOptionPane.ERROR_MESSAGE);
+            }
+            turnoJugador=2;
+        }
+//        else
+//        {
+//            // si era jugador 3, marca circulo y turno jugador 1
+//            tableroLabels[columna][fila].setIcon(iconoCirculo);
+//            turnoJugador=1;
+//        }
+        // muestra el turno del jugador
+        // jLabel1.setText("Turno del Jugador "+turnoJugador);
+        
+        //try {
+            // como el cliente dio clic debe enviar al servidor las coordenadas
+            // el servidor se las pasara al thread cliente para que este
+            // las muestre (haga el marcar)
+            // envia las coordenadas
+            //jugador.salidaObject.writeInt(1);
+            //jugador.salidaObject.writeInt(columna);
+            //jugador.salidaObject.writeInt(fila);
+//        } catch (IOException ex) {
+//            
+//        }
+         
+        // si gano el jugador 1 lo indica
+        if(haGanado())
+        {
+            JOptionPane.showMessageDialog(null, "Ha ganado el jugador 1");
+            reiniciarJuego();
+        }      
+    }
+    public void clickSobreTableroMina(java.awt.event.MouseEvent evt)
+    {
+        // obtiene el boton 
+        JButton botonTemp = (JButton)evt.getComponent();
+        
+        // obtiene el i,j de action command del boton
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+       
+        
+        // si ya se disparo entonces nada
+        if (horizontal==1){
+           if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna+1][fila]!=0))
+                return; 
+        }
+        else{
+            if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna][fila+1]!=0))
+                return;
+        }
+        
+        
+        // si es mi turno continua, si no return
+//        if (numeroJugador != turnoJugador)
+//            return;
+        
+        // como es turno del cliente marca el logico con su numero
+        //tableroLogico[columna][fila]=turnoJugador;
+        // si era el jugador 1 marca con x y cambia el turno a jugador 2
+        if (numeroJugador != 10)
+        {
+            try {
+                if(horizontal==1){
+                    tableroLabels[columna][fila].setIcon(iconoMina);
+                    tableroLogico[columna][fila]=tipoEstructura;
+                    tableroLabels[columna+1][fila].setIcon(iconoMina);
+                    tableroLogico[columna+1][fila]=tipoEstructura;
+                }
+                else{
+                    tableroLabels[columna][fila].setIcon(iconoMina);
+                    tableroLogico[columna][fila]=tipoEstructura;
+                    tableroLabels[columna][fila+1].setIcon(iconoMina);
+                    tableroLogico[columna][fila+1]=tipoEstructura;
+                }
+                             
+                    
+            } catch (ArrayIndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
+                            "Posiciones fuera de rango", JOptionPane.ERROR_MESSAGE);
+            }
+            turnoJugador=2;
+        }
+//        else
+//        {
+//            // si era jugador 3, marca circulo y turno jugador 1
+//            tableroLabels[columna][fila].setIcon(iconoCirculo);
+//            turnoJugador=1;
+//        }
+        // muestra el turno del jugador
+        // jLabel1.setText("Turno del Jugador "+turnoJugador);
+        
+        //try {
+            // como el cliente dio clic debe enviar al servidor las coordenadas
+            // el servidor se las pasara al thread cliente para que este
+            // las muestre (haga el marcar)
+            // envia las coordenadas
+            //jugador.salidaObject.writeInt(1);
+            //jugador.salidaObject.writeInt(columna);
+            //jugador.salidaObject.writeInt(fila);
+//        } catch (IOException ex) {
+//            
+//        }
+         
+        // si gano el jugador 1 lo indica
+        if(haGanado())
+        {
+            JOptionPane.showMessageDialog(null, "Ha ganado el jugador 1");
+            reiniciarJuego();
+        }      
+    }
+    public void clickSobreTableroTemplo(java.awt.event.MouseEvent evt)
+    {
+        // obtiene el boton 
+        JButton botonTemp = (JButton)evt.getComponent();
+        
+        // obtiene el i,j de action command del boton
+        String identificadorBoton = botonTemp.getActionCommand();
+        
+        // separa el string del action comand para obtener columnas
+        int columna = 
+          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+        int fila = 
+          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+       
+        
+        // si ya se disparo entonces nada
+        if (horizontal==1){
+           if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna+1][fila]!=0))
+                return; 
+        }
+        else{
+            if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna][fila+1]!=0))
+                return;
+        }
+        
+        
+        // si es mi turno continua, si no return
+//        if (numeroJugador != turnoJugador)
+//            return;
+        
+        // como es turno del cliente marca el logico con su numero
+        //tableroLogico[columna][fila]=turnoJugador;
+        // si era el jugador 1 marca con x y cambia el turno a jugador 2
+        if (numeroJugador != 10)
+        {
+            try {
+                if(horizontal==1){
+                    tableroLabels[columna][fila].setIcon(iconoTemplo);
+                    tableroLogico[columna][fila]=tipoEstructura;
+                    tableroLabels[columna+1][fila].setIcon(iconoTemplo);
+                    tableroLogico[columna+1][fila]=tipoEstructura;
+                }
+                else{
+                    tableroLabels[columna][fila].setIcon(iconoTemplo);
+                    tableroLogico[columna][fila]=tipoEstructura;
+                    tableroLabels[columna][fila+1].setIcon(iconoTemplo);
+                    tableroLogico[columna][fila+1]=tipoEstructura;
+                }
+                             
+                    
+            } catch (ArrayIndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
+                            "Posiciones fuera de rango", JOptionPane.ERROR_MESSAGE);
+            }
+            turnoJugador=2;
+        }
+//        else
+//        {
+//            // si era jugador 3, marca circulo y turno jugador 1
+//            tableroLabels[columna][fila].setIcon(iconoCirculo);
+//            turnoJugador=1;
+//        }
+        // muestra el turno del jugador
+        // jLabel1.setText("Turno del Jugador "+turnoJugador);
+        
+        //try {
+            // como el cliente dio clic debe enviar al servidor las coordenadas
+            // el servidor se las pasara al thread cliente para que este
+            // las muestre (haga el marcar)
+            // envia las coordenadas
+            //jugador.salidaObject.writeInt(1);
+            //jugador.salidaObject.writeInt(columna);
+            //jugador.salidaObject.writeInt(fila);
+//        } catch (IOException ex) {
+//            
+//        }
+         
+        // si gano el jugador 1 lo indica
+        if(haGanado())
+        {
+            JOptionPane.showMessageDialog(null, "Ha ganado el jugador 1");
+            reiniciarJuego();
+        }      
+    }
     void mouseSobreTableroFuente(java.awt.event.MouseEvent evt){
         JButton botonTemp= (JButton)evt.getComponent();
         String identificadorBoton = botonTemp.getActionCommand();
@@ -878,10 +1402,14 @@ public class VentanaJugador extends javax.swing.JFrame {
         int fila = 
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
-            tableroLabels[columna][fila].setIcon(iconoFuente);
-            tableroLabels[columna+1][fila].setIcon(iconoFuente);
-            tableroLabels[columna][fila+1].setIcon(iconoFuente);
-            tableroLabels[columna+1][fila+1].setIcon(iconoFuente);
+            if(tableroLogico[columna][fila]==0)
+                tableroLabels[columna][fila].setIcon(iconoFuente);
+            if(tableroLogico[columna+1][fila]==0)
+                tableroLabels[columna+1][fila].setIcon(iconoFuente);
+            if(tableroLogico[columna][fila+1]==0)
+                tableroLabels[columna][fila+1].setIcon(iconoFuente);
+            if(tableroLogico[columna+1][fila+1]==0)
+                tableroLabels[columna+1][fila+1].setIcon(iconoFuente);
         } catch (ArrayIndexOutOfBoundsException e) {
         }
     }
@@ -895,10 +1423,23 @@ public class VentanaJugador extends javax.swing.JFrame {
         int fila = 
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
-            tableroLabels[columna][fila].setIcon(iconoVacio);
-            tableroLabels[columna+1][fila].setIcon(iconoVacio);
-            tableroLabels[columna][fila+1].setIcon(iconoVacio);
-            tableroLabels[columna+1][fila+1].setIcon(iconoVacio);
+            System.out.println(tableroLogico[columna][fila]+"");
+//            if((tableroLogico[columna][fila]==0)&&(tableroLogico[columna+1][fila]==0)&&
+//                    (tableroLogico[columna][fila+1]==0)&&(tableroLogico[columna+1][fila+1]==0)){
+//                tableroLabels[columna][fila].setIcon(iconoVacio);
+//                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+//                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+//                tableroLabels[columna+1][fila+1].setIcon(iconoVacio);
+//            }
+            if(tableroLogico[columna][fila]==0)
+                tableroLabels[columna][fila].setIcon(iconoVacio);
+            if(tableroLogico[columna+1][fila]==0)
+                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+            if(tableroLogico[columna][fila+1]==0)
+                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+            if(tableroLogico[columna+1][fila+1]==0)
+                tableroLabels[columna+1][fila+1].setIcon(iconoVacio);
+            
         } catch (ArrayIndexOutOfBoundsException e) {
         }
     }
@@ -913,12 +1454,17 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
             if (horizontal==1) {
-                tableroLabels[columna][fila].setIcon(iconoMercado);
-                tableroLabels[columna+1][fila].setIcon(iconoMercado);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoMercado);
+                
+                if(tableroLogico[columna+1][fila]==0)
+                    tableroLabels[columna+1][fila].setIcon(iconoMercado);
             }
             else{
-                tableroLabels[columna][fila].setIcon(iconoMercado);
-                tableroLabels[columna][fila+1].setIcon(iconoMercado);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoMercado);
+                if(tableroLogico[columna][fila+1]==0)
+                    tableroLabels[columna][fila+1].setIcon(iconoMercado);
             }
          
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -935,12 +1481,17 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
             if (horizontal==1) {
-                tableroLabels[columna][fila].setIcon(iconoVacio);
-                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);
+                
+                if(tableroLogico[columna+1][fila]==0)
+                    tableroLabels[columna+1][fila].setIcon(iconoVacio);
             }
             else{
-                tableroLabels[columna][fila].setIcon(iconoVacio);
-                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila+1]==0)
+                    tableroLabels[columna][fila+1].setIcon(iconoVacio);
             }
          
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -956,7 +1507,8 @@ public class VentanaJugador extends javax.swing.JFrame {
         int fila = 
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         
-        tableroLabels[columna][fila].setIcon(iconoConector);
+        if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoConector);
 
     }
     void borrarMouseSobreTableroConector(java.awt.event.MouseEvent evt){
@@ -969,7 +1521,8 @@ public class VentanaJugador extends javax.swing.JFrame {
         int fila = 
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
 
-        tableroLabels[columna][fila].setIcon(iconoVacio);   
+        if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);   
     }
     void mouseSobreTableroArmeria(java.awt.event.MouseEvent evt){
         JButton botonTemp= (JButton)evt.getComponent();
@@ -982,12 +1535,17 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
             if (horizontal==1) {
-                tableroLabels[columna][fila].setIcon(iconoArmeria);
-                tableroLabels[columna+1][fila].setIcon(iconoArmeria);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoArmeria);
+                
+                if(tableroLogico[columna+1][fila]==0)
+                    tableroLabels[columna+1][fila].setIcon(iconoArmeria);
             }
             else{
-                tableroLabels[columna][fila].setIcon(iconoArmeria);
-                tableroLabels[columna][fila+1].setIcon(iconoArmeria);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoArmeria);
+                if(tableroLogico[columna][fila+1]==0)
+                    tableroLabels[columna][fila+1].setIcon(iconoArmeria);
             }
          
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -1004,12 +1562,17 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
             if (horizontal==1) {
-                tableroLabels[columna][fila].setIcon(iconoVacio);
-                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);
+                
+                if(tableroLogico[columna+1][fila]==0)
+                    tableroLabels[columna+1][fila].setIcon(iconoVacio);
             }
             else{
-                tableroLabels[columna][fila].setIcon(iconoVacio);
-                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila+1]==0)
+                    tableroLabels[columna][fila+1].setIcon(iconoVacio);
             }
          
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -1026,12 +1589,17 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
             if (horizontal==1) {
-                tableroLabels[columna][fila].setIcon(iconoMina);
-                tableroLabels[columna+1][fila].setIcon(iconoMina);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoMina);
+                
+                if(tableroLogico[columna+1][fila]==0)
+                    tableroLabels[columna+1][fila].setIcon(iconoMina);
             }
             else{
-                tableroLabels[columna][fila].setIcon(iconoMina);
-                tableroLabels[columna][fila+1].setIcon(iconoMina);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoMina);
+                if(tableroLogico[columna][fila+1]==0)
+                    tableroLabels[columna][fila+1].setIcon(iconoMina);
             }
          
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -1048,12 +1616,17 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
             if (horizontal==1) {
-                tableroLabels[columna][fila].setIcon(iconoVacio);
-                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);
+                
+                if(tableroLogico[columna+1][fila]==0)
+                    tableroLabels[columna+1][fila].setIcon(iconoVacio);
             }
             else{
-                tableroLabels[columna][fila].setIcon(iconoVacio);
-                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila+1]==0)
+                    tableroLabels[columna][fila+1].setIcon(iconoVacio);
             }
          
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -1070,12 +1643,17 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
             if (horizontal==1) {
-                tableroLabels[columna][fila].setIcon(iconoTemplo);
-                tableroLabels[columna+1][fila].setIcon(iconoTemplo);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoTemplo);
+                
+                if(tableroLogico[columna+1][fila]==0)
+                    tableroLabels[columna+1][fila].setIcon(iconoTemplo);
             }
             else{
-                tableroLabels[columna][fila].setIcon(iconoTemplo);
-                tableroLabels[columna][fila+1].setIcon(iconoTemplo);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoTemplo);
+                if(tableroLogico[columna][fila+1]==0)
+                    tableroLabels[columna][fila+1].setIcon(iconoTemplo);
             }
          
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -1092,12 +1670,17 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
         try {
             if (horizontal==1) {
-                tableroLabels[columna][fila].setIcon(iconoVacio);
-                tableroLabels[columna+1][fila].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);
+                
+                if(tableroLogico[columna+1][fila]==0)
+                    tableroLabels[columna+1][fila].setIcon(iconoVacio);
             }
             else{
-                tableroLabels[columna][fila].setIcon(iconoVacio);
-                tableroLabels[columna][fila+1].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila]==0)
+                    tableroLabels[columna][fila].setIcon(iconoVacio);
+                if(tableroLogico[columna][fila+1]==0)
+                    tableroLabels[columna][fila+1].setIcon(iconoVacio);
             }
          
         } catch (ArrayIndexOutOfBoundsException e) {
