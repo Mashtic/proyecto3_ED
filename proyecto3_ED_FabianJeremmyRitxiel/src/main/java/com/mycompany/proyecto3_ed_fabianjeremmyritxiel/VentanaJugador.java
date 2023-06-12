@@ -211,12 +211,32 @@ public class VentanaJugador extends javax.swing.JFrame {
         btn_Escudo.setText("Escudo");
 
         btn_TaboleroP1.setText("P1");
+        btn_TaboleroP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TaboleroP1ActionPerformed(evt);
+            }
+        });
 
         btn_TableroP2.setText("P2");
+        btn_TableroP2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TableroP2ActionPerformed(evt);
+            }
+        });
 
         btn_TaberoP3.setText("P3");
+        btn_TaberoP3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TaberoP3ActionPerformed(evt);
+            }
+        });
 
         btn_TableroP4.setText("P4");
+        btn_TableroP4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TableroP4ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Inventario");
 
@@ -612,6 +632,22 @@ public class VentanaJugador extends javax.swing.JFrame {
     private void btn_VerticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VerticalActionPerformed
         horizontal=0;
     }//GEN-LAST:event_btn_VerticalActionPerformed
+
+    private void btn_TaboleroP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaboleroP1ActionPerformed
+        jugadorEnemigo=1;
+    }//GEN-LAST:event_btn_TaboleroP1ActionPerformed
+
+    private void btn_TableroP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TableroP2ActionPerformed
+        jugadorEnemigo=2;
+    }//GEN-LAST:event_btn_TableroP2ActionPerformed
+
+    private void btn_TaberoP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaberoP3ActionPerformed
+        jugadorEnemigo=3;
+    }//GEN-LAST:event_btn_TaberoP3ActionPerformed
+
+    private void btn_TableroP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TableroP4ActionPerformed
+        jugadorEnemigo=4;
+    }//GEN-LAST:event_btn_TableroP4ActionPerformed
     
     Jugador jugador;
     //----------------------------------
@@ -622,7 +658,13 @@ public class VentanaJugador extends javax.swing.JFrame {
     JButton [][] tableroEnemigo = new JButton[DIMENSIONES][DIMENSIONES];
     // tablero logico, indica el status del boton, si disparado o no
     int[][] tableroLogico = new int[DIMENSIONES][DIMENSIONES];
-    int[][] tableroLogicoEnemigo = new int[DIMENSIONES][DIMENSIONES];
+    int[][] tableroLogicoEnemigo1 = new int[DIMENSIONES][DIMENSIONES];
+    int[][] tableroLogicoEnemigo2 = new int[DIMENSIONES][DIMENSIONES];
+    int[][] tableroLogicoEnemigo3 = new int[DIMENSIONES][DIMENSIONES];
+    int[][] tableroLogicoEnemigo4 = new int[DIMENSIONES][DIMENSIONES];
+    
+    
+    
     // crea imagen blanco
     ImageIcon iconoVacio = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\wcvacio.GIF");
     ImageIcon iconoEquiz = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\cequiz.GIF");
@@ -635,12 +677,33 @@ public class VentanaJugador extends javax.swing.JFrame {
     ImageIcon iconoTemplo= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\templo.png");
     
     int tipoEstructura=0;
+    
+    int tipoAtaque=0;
+    
     int horizontal=1;
     int turnoJugador=1;
     
     //numero de jugador 1 o 2
-    int numeroJugador = 0;
     
+    int cantFuente=1;
+    int cantMercado=1;
+    int cantConector=0;
+    int cantArmeria=0;
+    int cantMina=0;
+    int cantTemplo=0;
+    int cantCanon=0;
+    int cantCanonM=0;
+    int cantBomba=0;
+    int cantCanonBB=0;
+    int cantBarcoF=0;
+    int cantEscudo=0;
+    int cantKraken=0;
+    int cantPlata=4000;
+    int cantHierro=0;
+    
+    int jugadorEnemigo=0;
+    
+    boolean puedoJugar=false;
     
     void initImages(){
         btn_PonerFuente.setIcon(iconoFuente);
@@ -650,6 +713,10 @@ public class VentanaJugador extends javax.swing.JFrame {
         btn_PonerMina.setIcon(iconoMina);
         btn_PonerTemplo.setIcon(iconoTemplo);
   
+    }
+    
+    void bloqueoBotones(){
+        
     }
     void generarTablero()
     {
@@ -779,8 +846,43 @@ public class VentanaJugador extends javax.swing.JFrame {
                 });
                 tableroEnemigo[i][j].addMouseListener(new MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        
-                    clickSobreTablero(evt);
+                    
+                    switch (tipoAtaque) {
+                        case 0:
+                            //
+                            break;
+                        case 7:
+                            clickSobreTableroCanon(evt);
+                            System.out.println("Estoy aqui"); 
+                            break;
+                        case 8:
+                            clickSobreTableroCanonM(evt);
+                            System.out.println("Mercado"); 
+                            break;
+                        case 9:
+                            clickSobreTableroBomba(evt);
+                            System.out.println("Conector"); 
+                            break;
+                        case 10:
+                            clickSobreTableroCanonBB(evt);
+                            System.out.println("Armeria"); 
+                            break;
+                        case 11:
+                            clickSobreTableroBarcoFF(evt);
+                            System.out.println("Mina"); 
+                            break;
+                        case 12:
+                            clickSobreTableroKraken(evt);
+                            System.out.println("Templo"); 
+                            break;  
+                        case 13:
+                            clickSobreTableroEscudo(evt);
+                            System.out.println("Templo"); 
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+                    
                     
                 }
                 });
@@ -803,57 +905,16 @@ public class VentanaJugador extends javax.swing.JFrame {
             }
         }
     }
-    
     // este metodo es la respuesta del cliente al clic del enemigo
-    public void marcar(int columna, int fila)
+    public void marcar(Coordenada cord)
     {
-        // marca el tablero con num de jugador
-        tableroLogico[columna][fila]=turnoJugador;
-        // si soy el 1, marco con o que es el 2, sino con X
-        // pues es el turno del enemigo que estoy marcando
-        if (numeroJugador == 1)
-            tableroLabels[columna][fila].setIcon(iconoCirculo);
-        else
-            tableroLabels[columna][fila].setIcon(iconoEquiz);
-            
-        // pregunta si gano el enemigo
-            if(haGanado())
-            {
-                JOptionPane.showMessageDialog(null, "Ha ganado el jugador "+turnoJugador);
-                
-                reiniciarJuego();
-            }          
-        // este fue el clic del enemigo, marco ahora mi turno
-        turnoJugador = numeroJugador;
-        //jLabel1.setText("Turno del Jugador "+turnoJugador);
-        
-        
-//        // es similar a validar si el disparo es bomba o barco
-//        if (Integer.parseInt(txfColumna.getText()) == columna && 
-//                Integer.parseInt(txfFila.getText()) == fila)
-//        {
-//            try {
-//                //escribe la opcion 5 al server
-//                // para que la pase al enemigo
-//                // y haga el metodo de generar bombas
-//                cliente.salida.writeInt(5);
-//                cliente.salida.writeInt(columna);
-//                cliente.salida.writeInt(fila);
-//                
-//            } catch (IOException ex) {
-//                
-//            }
-//        
-//        }
         
     }
-    
     public void bomba(int col, int fila)
     {
         JOptionPane.showMessageDialog(this, "Generar bombas y enviarlas una " +
                 "a una al enemigo ("+col+","+fila+")");
     }
-    
     public void clickSobreTablero(java.awt.event.MouseEvent evt)
     {
         // obtiene el boton 
@@ -913,7 +974,6 @@ public class VentanaJugador extends javax.swing.JFrame {
             reiniciarJuego();
         }      
     }
-    
     public void clickSobreTableroFuente(java.awt.event.MouseEvent evt)
     {
         // obtiene el boton 
@@ -1686,47 +1746,93 @@ public class VentanaJugador extends javax.swing.JFrame {
         } catch (ArrayIndexOutOfBoundsException e) {
         }
     }
+    void clickSobreTableroCanon(java.awt.event.MouseEvent evt){
+        try {
+            jugador.salidaObject.writeInt(tipoAtaque);
+            jugador.salidaObject.flush();
+            puedoJugar=jugador.entradaObject.readBoolean();
+            if (puedoJugar){
+                JButton botonTemp= (JButton) evt.getComponent();
+                // obtiene el i,j de action command del boton
+                String identificadorBoton = botonTemp.getActionCommand();
+                // separa el string del action comand para obtener columnas
+                int columna = 
+                  Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                int fila = 
+                  Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Posiciones posiAtaque = new Posiciones();
+                posiAtaque.listaCoordenada.add(cordAtaque);
+                jugador.salidaObject.writeInt(jugadorEnemigo);
+                jugador.salidaObject.flush();
+                jugador.salidaObject.writeObject(posiAtaque);
+                jugador.salidaObject.flush();
+            }
+            else{
+                return;
+            }
+        } catch (IOException ex) {
+            System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
+            Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     boolean haGanado()
     {
-        
-        //Ganó en las filas
-        for(int i=0;i<3;i++)
-        {
-        if ((tableroLogico[i][0]==tableroLogico[i][1])
-                &&(tableroLogico[i][1]==tableroLogico[i][2])
-                && !(tableroLogico[i][0]==0))
-        {
-            return true;
-        }
-        }
-        
-        //Gano en las columnas
-        for(int i=0;i<3;i++)
-        {
-        if ((tableroLogico[0][i]==tableroLogico[1][i])
-                &&(tableroLogico[1][i]==tableroLogico[2][i])
-                && !(tableroLogico[0][i]==0))
-        {
-            return true;
-        }
-        }
-        //Verificar diagonal 1
-        if ((tableroLogico[0][0]==tableroLogico[1][1])
-                &&(tableroLogico[1][1]==tableroLogico[2][2])
-                && !(tableroLogico[0][0]==0))
-            return true;
-        
-        //Verificar diagonal 2
-        if ((tableroLogico[2][0]==tableroLogico[1][1])
-                &&(tableroLogico[1][1]==tableroLogico[0][2])
-                && !(tableroLogico[2][0]==0))
-            return true;
-        
-        return false;
+       return false;
     }                                      
     public void mostrar(String str){
         txa_Mensaje.append(str+"\n");
     }
+    public void mostrarAtaque (String str){
+        txa_Jugadas.append(str+"\n");
+    }
+    public void setCantFuente(){
+        lbl_CantFuente.setText(cantFuente+"");
+    }
+    public void setCantMercado(){
+        lbl_CantMercado.setText(cantMercado+"");
+    }
+    public void setCantConector(){
+        lbl_CantConector.setText(cantConector+"");
+    }
+    public void setCantArmeria(){
+        lbl_CantArmeria.setText(cantArmeria+"");   
+    }
+    public void setCantMina(){
+        lbl_CantMina.setText(cantMina+"");
+    }
+    public void setCantTemplo(){
+        lbl_CantTemplo.setText(cantTemplo+"");
+    }
+    public void setCantCanon(){
+        lbl_CantCanon.setText(cantCanon+"");   
+    }
+    public void setCantCanonM(){
+        lbl_CantCanonM.setText(cantCanonM+"");
+    }
+    public void setCantBomba(){
+        lbl_CantBomba.setText(cantBomba+"");
+    }
+    public void setCantCanonBB(){
+        lbl_CantCanonBB.setText(cantCanonBB+"");
+    }
+    public void setCantBarcoF(){
+        lbl_CantBarcoF.setText(cantBarcoF+"");
+    }
+    public void setCantEscudo(){
+        lbl_CantEscudo.setText(cantEscudo+"");
+    }
+    public void setCantKraken(){
+        lbl_CantKraken.setText(cantKraken+"");
+    }
+    public void setCantPlata(){
+        lbl_CantPlata.setText(cantPlata+"");
+    }
+    public void setCantHierro(){
+        lbl_CantHierro.setText(cantHierro+"");
+    }
+    
     /**
      * @param args the command line arguments
      */

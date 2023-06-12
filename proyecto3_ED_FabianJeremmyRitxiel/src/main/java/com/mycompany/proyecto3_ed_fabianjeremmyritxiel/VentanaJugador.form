@@ -508,21 +508,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="P1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TaboleroP1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_TableroP2">
       <Properties>
         <Property name="text" type="java.lang.String" value="P2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TableroP2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_TaberoP3">
       <Properties>
         <Property name="text" type="java.lang.String" value="P3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TaberoP3ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_TableroP4">
       <Properties>
         <Property name="text" type="java.lang.String" value="P4"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TableroP4ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

@@ -21,9 +21,19 @@ public class Server {
     Socket jugador;
     ArrayList<Socket> listaJugadores= new ArrayList<Socket>();
     ArrayList<threadServer> hilosServer= new ArrayList<threadServer>();
+    int turno=1;
 
     public Server(VentanaServer ventana) {
         this.ventana = ventana;
+    }
+    
+    public void cambiarTurno(){
+        if (turno==hilosServer.size()) {
+            turno=1;
+        }
+        else{
+            turno++;
+        }
     }
     
     public void runServer(){
@@ -36,7 +46,7 @@ public class Server {
                 while(listaJugadores.size()<=cantJugadores){
                     jugador=server.accept();
                     listaJugadores.add(jugador);
-                    threadServer hiloServer= new threadServer(jugador,this,listaJugadores.size()-1);
+                    threadServer hiloServer= new threadServer(jugador,this,listaJugadores.size());
                     hilosServer.add(hiloServer);
                     hiloServer.start();
                 }

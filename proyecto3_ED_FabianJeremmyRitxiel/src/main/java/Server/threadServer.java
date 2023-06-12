@@ -4,6 +4,7 @@
  */
 package Server;
 
+import com.mycompany.proyecto3_ed_fabianjeremmyritxiel.Posiciones;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -70,53 +71,23 @@ public class threadServer extends Thread{
              switch(opcion)
              {
                 case 1://envio de coordenada
-//                    try{
-//                    // envia un 4 al thradCliente enemigo
-////                        for (threadServidor enemigo : listaEnemigo) {
-////                            enemigo.salidaObject.writeInt(1);
-////                            enemigo.salidaObject.flush();
-////                            // envia el mensaje al thread cliente enemigo
-////                            enemigo.salidaObject.writeObject(carta);
-////                            enemigo.salidaObject.flush();
-////                        }
-//                    }
-//                    catch (/ClassNotFoundException ex) {}
-                    // LEYO OPCION 1
-                    // LEE LAS COORDENADAS QUE ENVIO ESTE CLIENTE
-                    // Luego las pasa al enemigo para que marque su tablero
-//                   int columna = entrada.readInt();//Lee coordenada
-//                   int fila = entrada.readInt();//Lee coordenada fila
-//                   servidor.ventana.mostrar("Recibido " + columna +","+fila);
-//                   // ENVIA LA COORDENADA AL ENEMIGO
-//                   enemigo.salida.writeInt(1);// Opcion 1 al hilo cliente del enemigo
-//                   enemigo.salida.writeInt(columna);// envia columna
-//                   enemigo.salida.writeInt(fila);// envia fila
-//                   
-//                   System.out.println("Op1: lee col,fil, envia al enemigo, 1, col, fila: "+columna+" , "+fila );
-                    
+                    String mensajeRespuesta=entradaObject.readUTF();
+                    int numJugadorRecibidor=entradaObject.readInt();
+                    threadServer jugadorRecibidor = null;
+                    for (threadServer enemigo : listaEnemigo) {
+                        if (enemigo.numJugador==numJugadorRecibidor){
+                            jugadorRecibidor=enemigo;
+                        }
+                    }
+                    jugadorRecibidor.salidaObject.writeInt(1);
+                    jugadorRecibidor.salidaObject.flush();
+                    jugadorRecibidor.salidaObject.writeUTF(mensajeRespuesta);
+                    jugadorRecibidor.salidaObject.flush();
                    break;
 
                 case 2:// 
 //                    try{
-//                        /*Carta carta = (Carta)entradaObject.readObject();
-//                    // envia un 4 al thradCliente enemigo
-//                        for (threadServidor enemigo : listaEnemigo) {
-//                            if(enemigo.equals(listaEnemigo.get(0))){
-//                                enemigo.salidaObject.writeInt(2);
-//                                enemigo.salidaObject.flush();
-//                                enemigo.salidaObject.writeObject(carta);
-//                                enemigo.salidaObject.flush();
-//                            }
-//                            else{
-//                                enemigo.salidaObject.writeInt(1);
-//                                enemigo.salidaObject.flush();
-//                                // envia el mensaje al thread cliente enemigo
-//                                enemigo.salidaObject.writeObject(carta);
-//                                enemigo.salidaObject.flush();
-//                            }
-//                            
-//                        }
-//                        */
+//                        
 //                    }
 //                    catch (ClassNotFoundException ex) {}
                     
@@ -131,30 +102,74 @@ public class threadServer extends Thread{
 //                    System.out.println("3. Op3: envia 3 y numeroJugador y enemigo: "+ numeroDeJugador);
                    break;
                  case 4:
-                     // lee el mensaje enviado desde el jframe
-                     String mensaje = entradaObject.readUTF();
-                     // envia un 4 al thradCliente enemigo
-                     for (threadServer enemigo : listaEnemigo) {
-                         enemigo.salidaObject.writeInt(4);
-                         enemigo.salidaObject.flush();
-                         // envia el mensaje al thread cliente enemigo
-                         enemigo.salidaObject.writeUTF(mensaje);
-                         enemigo.salidaObject.flush();
-                         System.out.println("Op4: envia 4 y mensaje: "+ mensaje);
-                     }
+                    // lee el mensaje enviado desde el jframe
+                    String mensaje = entradaObject.readUTF();
+                    // envia un 4 al thradCliente enemigo
+                    for (threadServer enemigo : listaEnemigo) {
+                        if (!enemigo.equals(this)){
+                            enemigo.salidaObject.writeInt(4);
+                            enemigo.salidaObject.flush();
+                            // envia el mensaje al thread cliente enemigo
+                            enemigo.salidaObject.writeUTF(mensaje);
+                            enemigo.salidaObject.flush(); 
+                        }
+                        
+                        System.out.println("Op4: envia 4 y mensaje: "+ mensaje);
+                    }
                  break;
-                 case 5:
-//                     // lee la columna
-//                     int col = entrada.readInt();
-//                     // lee la fila
-//                     int fil = entrada.readInt();
-//                     // envia un 5 al thradCliente enemigo
-//                     enemigo.salida.writeInt(5);
-//                     // envia el emnsaje al thread cliente enemigo
-//                     enemigo.salida.writeInt(col);
-//                     enemigo.salida.writeInt(fil);
-//                     System.out.println("Op5: envia columna fila para bomba ");
+                 case 7:
+                    if (numJugador==server.turno){
+                        salidaObject.writeBoolean(true);
+                        salidaObject.flush();
+                        int numJugadorAtacado=entradaObject.readInt();
+                        try {
+                            Posiciones posiAtaque=(Posiciones)entradaObject.readObject();
+                            threadServer jugadorAtacado = null;
+                            for (threadServer enemigo : listaEnemigo) {
+                                if (enemigo.numJugador==numJugadorAtacado){
+                                    jugadorAtacado=enemigo;
+                                }
+                            }
+                            jugadorAtacado.salidaObject.writeInt(1);
+                            jugadorAtacado.salidaObject.flush();
+                            // envia el mensaje al thread cliente enemigo
+                            jugadorAtacado.salidaObject.writeUTF(this.nameJugador+"> Está Atacando "+
+                                    " en las posiciones: "+posiAtaque.toString());
+                            jugadorAtacado.salidaObject.flush();
+                            System.out.println("Se envió mensaje");
+                            jugadorAtacado.salidaObject.writeInt(opcion);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeObject(posiAtaque);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeInt(this.numJugador);
+                            jugadorAtacado.salidaObject.flush();
+                            
+                        } catch (ClassNotFoundException ex) {}
+                        
+                    }
                  break;
+                 case 20:
+                 {
+                     try {
+                        Posiciones resPosiciones=(Posiciones)entradaObject.readObject();
+                        int numJugadorAtacante=entradaObject.readInt();
+                        threadServer jugadorAtacante=null;
+                        for (threadServer enemigo : listaEnemigo) {
+                            if (enemigo.numJugador==numJugadorAtacante){
+                                jugadorAtacante=enemigo;
+                            }
+                        }
+                        jugadorAtacante.salidaObject.writeInt(20);
+                        jugadorAtacante.salidaObject.flush();
+                        jugadorAtacante.salidaObject.writeObject(resPosiciones);
+                        jugadorAtacante.salidaObject.flush();
+                        jugadorAtacante.salidaObject.writeInt(this.numJugador);
+                        jugadorAtacante.salidaObject.flush();
+                        
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                 break;
+
              }
           }
           catch (IOException e) {

@@ -23,7 +23,7 @@ public class threadJugador extends Thread{
    public void run()
    {
        //VARIABLES
-      String menser="",amigo="";
+      String menser="",amigo="",mensajeAtaque="", mensajeEnviar="";
       int opcion=0;
       
       // solamente lee lo que el servidor threadServidor le envia
@@ -36,6 +36,8 @@ public class threadJugador extends Thread{
             switch(opcion)
             {
                case 1:
+                   mensajeAtaque=entrada.readUTF();
+                   ventana.mostrarAtaque(mensajeAtaque);
 //                     try {
 //                         //mensaje enviado
 //                         Carta carta= (Carta)entrada.readObject();
@@ -87,6 +89,45 @@ public class threadJugador extends Thread{
 //                     
                      System.out.println("Se escogio opcion 5");
                  break;
+                 
+                case 7:
+                 {
+                    
+                     try {
+                         Posiciones posiAtaque=(Posiciones)entrada.readObject();
+                         int numJugadorAtacando=entrada.readInt();
+                         for (Coordenada cord : posiAtaque.listaCoordenada) {
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                                 cord.setAcerto(true);
+                             }
+                             ventana.marcar(cord);
+                         }
+                         ventana.mostrarAtaque("RECIBIDO: "+posiAtaque.toStringAtaque());
+                         ventana.jugador.salidaObject.writeInt(1);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeUTF("ATAQUE: "+posiAtaque.toStringAtaque());
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(20);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeObject(posiAtaque);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando); 
+                         ventana.jugador.salidaObject.flush();
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                break;
+                case 20:
+                 {
+                     try {
+                         Posiciones resPosi=(Posiciones)entrada.readObject();
+                         
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                break;
+
+
                     
             }
          }
