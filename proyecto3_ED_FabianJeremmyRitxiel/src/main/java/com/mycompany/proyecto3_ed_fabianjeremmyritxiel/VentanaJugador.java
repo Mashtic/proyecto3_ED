@@ -29,6 +29,8 @@ public class VentanaJugador extends javax.swing.JFrame {
         jugador= new Jugador(this);
         generarTablero();
         initImages();
+        setearLabels();
+        
         
     }
 
@@ -199,16 +201,46 @@ public class VentanaJugador extends javax.swing.JFrame {
         btn_Mercado.setText("Acceder Mercado");
 
         btn_CanonBB.setText("Cañon BB");
+        btn_CanonBB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CanonBBActionPerformed(evt);
+            }
+        });
 
         btn_Canon.setText("Cañon");
+        btn_Canon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CanonActionPerformed(evt);
+            }
+        });
 
         btn_CanonM.setText("Cañon M");
+        btn_CanonM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CanonMActionPerformed(evt);
+            }
+        });
 
         btn_Bomba.setText("Bomba");
+        btn_Bomba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BombaActionPerformed(evt);
+            }
+        });
 
         btn_BarcoF.setText("Barco F");
+        btn_BarcoF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BarcoFActionPerformed(evt);
+            }
+        });
 
         btn_Escudo.setText("Escudo");
+        btn_Escudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EscudoActionPerformed(evt);
+            }
+        });
 
         btn_TaboleroP1.setText("P1");
         btn_TaboleroP1.addActionListener(new java.awt.event.ActionListener() {
@@ -293,6 +325,11 @@ public class VentanaJugador extends javax.swing.JFrame {
         lbl_CantKraken.setText("0");
 
         btn_Kraken.setText("Kraken");
+        btn_Kraken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_KrakenActionPerformed(evt);
+            }
+        });
 
         jLabel28.setText("Plata ($)");
 
@@ -598,6 +635,7 @@ public class VentanaJugador extends javax.swing.JFrame {
     private void btn_IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IniciarActionPerformed
         try {
             jugador.conexion();
+            System.out.println("El número de jugador es:");
         } catch (IOException ex) {}
     }//GEN-LAST:event_btn_IniciarActionPerformed
 
@@ -648,6 +686,34 @@ public class VentanaJugador extends javax.swing.JFrame {
     private void btn_TableroP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TableroP4ActionPerformed
         jugadorEnemigo=4;
     }//GEN-LAST:event_btn_TableroP4ActionPerformed
+
+    private void btn_CanonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CanonActionPerformed
+        tipoAtaque=7;
+    }//GEN-LAST:event_btn_CanonActionPerformed
+
+    private void btn_CanonMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CanonMActionPerformed
+        tipoAtaque=8;
+    }//GEN-LAST:event_btn_CanonMActionPerformed
+
+    private void btn_BombaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BombaActionPerformed
+        tipoAtaque=9;
+    }//GEN-LAST:event_btn_BombaActionPerformed
+
+    private void btn_CanonBBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CanonBBActionPerformed
+        tipoAtaque=10;
+    }//GEN-LAST:event_btn_CanonBBActionPerformed
+
+    private void btn_BarcoFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BarcoFActionPerformed
+        tipoAtaque=11;
+    }//GEN-LAST:event_btn_BarcoFActionPerformed
+
+    private void btn_EscudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EscudoActionPerformed
+        tipoAtaque=13;
+    }//GEN-LAST:event_btn_EscudoActionPerformed
+
+    private void btn_KrakenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_KrakenActionPerformed
+        tipoAtaque=12;
+    }//GEN-LAST:event_btn_KrakenActionPerformed
     
     Jugador jugador;
     //----------------------------------
@@ -718,6 +784,7 @@ public class VentanaJugador extends javax.swing.JFrame {
     void bloqueoBotones(){
         
     }
+    
     void generarTablero()
     {
         for(int i=0;i<DIMENSIONES;i++)
@@ -888,7 +955,10 @@ public class VentanaJugador extends javax.swing.JFrame {
                 });
                 // en logico indica estado en disponible
                 tableroLogico[i][j]=0;
-                tableroLogicoEnemigo[i][j]=0;
+                tableroLogicoEnemigo1[i][j]=0;
+                tableroLogicoEnemigo2[i][j]=0;
+                tableroLogicoEnemigo3[i][j]=0;
+                tableroLogicoEnemigo4[i][j]=0;
             }
         }
     }
@@ -915,65 +985,6 @@ public class VentanaJugador extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Generar bombas y enviarlas una " +
                 "a una al enemigo ("+col+","+fila+")");
     }
-    public void clickSobreTablero(java.awt.event.MouseEvent evt)
-    {
-        // obtiene el boton 
-        JButton botonTemp = (JButton)evt.getComponent();
-        
-        // obtiene el i,j de action command del boton
-        String identificadorBoton = botonTemp.getActionCommand();
-        
-        // separa el string del action comand para obtener columnas
-        int columna = 
-          Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
-        int fila = 
-          Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
-        
-        // si ya se disparo entonces nada
-        if(tableroLogico[columna][fila]!=0)
-            return;
-        
-        // si es mi turno continua, si no return
-        if (numeroJugador != turnoJugador)
-            return;
-        
-        // como es turno del cliente marca el logico con su numero
-        tableroLogico[columna][fila]=turnoJugador;
-        // si era el jugador 1 marca con x y cambia el turno a jugador 2
-        if (numeroJugador == 1)
-        {
-            
-            tableroLabels[columna][fila].setIcon(iconoEquiz);
-            turnoJugador=2;
-        }
-        else
-        {
-            // si era jugador 3, marca circulo y turno jugador 1
-            tableroLabels[columna][fila].setIcon(iconoCirculo);
-            turnoJugador=1;
-        }
-        // muestra el turno del jugador
-        // jLabel1.setText("Turno del Jugador "+turnoJugador);
-        
-        try {
-            // como el cliente dio clic debe enviar al servidor las coordenadas
-            // el servidor se las pasara al thread cliente para que este
-            // las muestre (haga el marcar)
-            // envia las coordenadas
-            jugador.salidaObject.writeInt(1);
-            jugador.salidaObject.writeInt(columna);
-            jugador.salidaObject.writeInt(fila);
-        } catch (IOException ex) {
-            
-        }
-         
-        // si gano el jugador 1 lo indica
-        if(haGanado())
-        {
-            JOptionPane.showMessageDialog(null, "Ha ganado el jugador 1");
-            reiniciarJuego();
-        }      
-    }
     public void clickSobreTableroFuente(java.awt.event.MouseEvent evt)
     {
         // obtiene el boton 
@@ -987,21 +998,11 @@ public class VentanaJugador extends javax.swing.JFrame {
           Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
         int fila = 
           Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
-       
         
-        // si ya se disparo entonces nada
         if((tableroLogico[columna][fila]!=0)||(tableroLogico[columna+1][fila]!=0)||
                 (tableroLogico[columna][fila+1]!=0)||(tableroLogico[columna+1][fila+1]!=0))
             return;
-        
-        // si es mi turno continua, si no return
-//        if (numeroJugador != turnoJugador)
-//            return;
-        
-        // como es turno del cliente marca el logico con su numero
-        //tableroLogico[columna][fila]=turnoJugador;
-        // si era el jugador 1 marca con x y cambia el turno a jugador 2
-        if (numeroJugador != 10)
+        if (cantFuente != 0)
         {
             try {
             tableroLabels[columna][fila].setIcon(iconoFuente);
@@ -1012,36 +1013,13 @@ public class VentanaJugador extends javax.swing.JFrame {
             tableroLogico[columna+1][fila]=tipoEstructura;
             tableroLogico[columna][fila+1]=tipoEstructura;
             tableroLogico[columna+1][fila+1]=tipoEstructura;
-                             
+            //AGREGAR A GRAFO                 
                     
             } catch (ArrayIndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
                             "Posiciones fuera de rango", JOptionPane.ERROR_MESSAGE);
             }
-            turnoJugador=2;
         }
-//        else
-//        {
-//            // si era jugador 3, marca circulo y turno jugador 1
-//            tableroLabels[columna][fila].setIcon(iconoCirculo);
-//            turnoJugador=1;
-//        }
-        // muestra el turno del jugador
-        // jLabel1.setText("Turno del Jugador "+turnoJugador);
-        
-        //try {
-            // como el cliente dio clic debe enviar al servidor las coordenadas
-            // el servidor se las pasara al thread cliente para que este
-            // las muestre (haga el marcar)
-            // envia las coordenadas
-            //jugador.salidaObject.writeInt(1);
-            //jugador.salidaObject.writeInt(columna);
-            //jugador.salidaObject.writeInt(fila);
-//        } catch (IOException ex) {
-//            
-//        }
-         
-        // si gano el jugador 1 lo indica
         if(haGanado())
         {
             JOptionPane.showMessageDialog(null, "Ha ganado el jugador 1");
@@ -1081,7 +1059,7 @@ public class VentanaJugador extends javax.swing.JFrame {
         // como es turno del cliente marca el logico con su numero
         //tableroLogico[columna][fila]=turnoJugador;
         // si era el jugador 1 marca con x y cambia el turno a jugador 2
-        if (numeroJugador != 10)
+        if (cantMercado != 0)
         {
             try {
                 if(horizontal==1){
@@ -1089,12 +1067,14 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna+1][fila].setIcon(iconoMercado);
                     tableroLogico[columna+1][fila]=tipoEstructura;
+                    //Agregar grafo
                 }
                 else{
                     tableroLabels[columna][fila].setIcon(iconoMercado);
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna][fila+1].setIcon(iconoMercado);
                     tableroLogico[columna][fila+1]=tipoEstructura;
+                    //agregar grafo
                 }
                              
                     
@@ -1159,7 +1139,7 @@ public class VentanaJugador extends javax.swing.JFrame {
         // como es turno del cliente marca el logico con su numero
         //tableroLogico[columna][fila]=turnoJugador;
         // si era el jugador 1 marca con x y cambia el turno a jugador 2
-        if (numeroJugador != 10)
+        if (cantConector != 0)
         {
             try {
                 tableroLabels[columna][fila].setIcon(iconoConector);
@@ -1233,7 +1213,7 @@ public class VentanaJugador extends javax.swing.JFrame {
         // como es turno del cliente marca el logico con su numero
         //tableroLogico[columna][fila]=turnoJugador;
         // si era el jugador 1 marca con x y cambia el turno a jugador 2
-        if (numeroJugador != 10)
+        if (cantArmeria != 0)
         {
             try {
                 if(horizontal==1){
@@ -1317,7 +1297,7 @@ public class VentanaJugador extends javax.swing.JFrame {
         // como es turno del cliente marca el logico con su numero
         //tableroLogico[columna][fila]=turnoJugador;
         // si era el jugador 1 marca con x y cambia el turno a jugador 2
-        if (numeroJugador != 10)
+        if (cantMina != 0)
         {
             try {
                 if(horizontal==1){
@@ -1401,7 +1381,7 @@ public class VentanaJugador extends javax.swing.JFrame {
         // como es turno del cliente marca el logico con su numero
         //tableroLogico[columna][fila]=turnoJugador;
         // si era el jugador 1 marca con x y cambia el turno a jugador 2
-        if (numeroJugador != 10)
+        if (cantTemplo != 0)
         {
             try {
                 if(horizontal==1){
@@ -1749,6 +1729,187 @@ public class VentanaJugador extends javax.swing.JFrame {
     void clickSobreTableroCanon(java.awt.event.MouseEvent evt){
         try {
             jugador.salidaObject.writeInt(tipoAtaque);
+            System.out.println("TipoAtaque"+ tipoAtaque);
+            jugador.salidaObject.flush();
+            puedoJugar=jugador.entradaObject.readBoolean();
+            if (puedoJugar){
+                JButton botonTemp= (JButton) evt.getComponent();
+                // obtiene el i,j de action command del boton
+                String identificadorBoton = botonTemp.getActionCommand();
+                // separa el string del action comand para obtener columnas
+                int columna = 
+                  Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                int fila = 
+                  Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Posiciones posiAtaque = new Posiciones();
+                posiAtaque.listaCoordenada.add(cordAtaque);
+                jugador.salidaObject.writeInt(jugadorEnemigo);
+                jugador.salidaObject.flush();
+                jugador.salidaObject.writeObject(posiAtaque);
+                jugador.salidaObject.flush();
+            }
+            else{
+                return;
+            }
+        } catch (IOException ex) {
+            System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
+            Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    void clickSobreTableroCanonM(java.awt.event.MouseEvent evt){
+        try {
+            jugador.salidaObject.writeInt(tipoAtaque);
+            jugador.salidaObject.flush();
+            puedoJugar=jugador.entradaObject.readBoolean();
+            if (puedoJugar){
+                JButton botonTemp= (JButton) evt.getComponent();
+                // obtiene el i,j de action command del boton
+                String identificadorBoton = botonTemp.getActionCommand();
+                // separa el string del action comand para obtener columnas
+                int columna = 
+                  Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                int fila = 
+                  Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Posiciones posiAtaque = new Posiciones();
+                posiAtaque.listaCoordenada.add(cordAtaque);
+                jugador.salidaObject.writeInt(jugadorEnemigo);
+                jugador.salidaObject.flush();
+                jugador.salidaObject.writeObject(posiAtaque);
+                jugador.salidaObject.flush();
+            }
+            else{
+                return;
+            }
+        } catch (IOException ex) {
+            System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
+            Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    void clickSobreTableroBomba(java.awt.event.MouseEvent evt){
+        try {
+            jugador.salidaObject.writeInt(tipoAtaque);
+            jugador.salidaObject.flush();
+            puedoJugar=jugador.entradaObject.readBoolean();
+            if (puedoJugar){
+                JButton botonTemp= (JButton) evt.getComponent();
+                // obtiene el i,j de action command del boton
+                String identificadorBoton = botonTemp.getActionCommand();
+                // separa el string del action comand para obtener columnas
+                int columna = 
+                  Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                int fila = 
+                  Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Posiciones posiAtaque = new Posiciones();
+                posiAtaque.listaCoordenada.add(cordAtaque);
+                jugador.salidaObject.writeInt(jugadorEnemigo);
+                jugador.salidaObject.flush();
+                jugador.salidaObject.writeObject(posiAtaque);
+                jugador.salidaObject.flush();
+            }
+            else{
+                return;
+            }
+        } catch (IOException ex) {
+            System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
+            Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    void clickSobreTableroCanonBB(java.awt.event.MouseEvent evt){
+        try {
+            jugador.salidaObject.writeInt(tipoAtaque);
+            jugador.salidaObject.flush();
+            puedoJugar=jugador.entradaObject.readBoolean();
+            if (puedoJugar){
+                JButton botonTemp= (JButton) evt.getComponent();
+                // obtiene el i,j de action command del boton
+                String identificadorBoton = botonTemp.getActionCommand();
+                // separa el string del action comand para obtener columnas
+                int columna = 
+                  Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                int fila = 
+                  Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Posiciones posiAtaque = new Posiciones();
+                posiAtaque.listaCoordenada.add(cordAtaque);
+                jugador.salidaObject.writeInt(jugadorEnemigo);
+                jugador.salidaObject.flush();
+                jugador.salidaObject.writeObject(posiAtaque);
+                jugador.salidaObject.flush();
+            }
+            else{
+                return;
+            }
+        } catch (IOException ex) {
+            System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
+            Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    void clickSobreTableroBarcoFF(java.awt.event.MouseEvent evt){
+        try {
+            jugador.salidaObject.writeInt(tipoAtaque);
+            jugador.salidaObject.flush();
+            puedoJugar=jugador.entradaObject.readBoolean();
+            if (puedoJugar){
+                JButton botonTemp= (JButton) evt.getComponent();
+                // obtiene el i,j de action command del boton
+                String identificadorBoton = botonTemp.getActionCommand();
+                // separa el string del action comand para obtener columnas
+                int columna = 
+                  Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                int fila = 
+                  Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Posiciones posiAtaque = new Posiciones();
+                posiAtaque.listaCoordenada.add(cordAtaque);
+                jugador.salidaObject.writeInt(jugadorEnemigo);
+                jugador.salidaObject.flush();
+                jugador.salidaObject.writeObject(posiAtaque);
+                jugador.salidaObject.flush();
+            }
+            else{
+                return;
+            }
+        } catch (IOException ex) {
+            System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
+            Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    void clickSobreTableroEscudo(java.awt.event.MouseEvent evt){
+        try {
+            jugador.salidaObject.writeInt(tipoAtaque);
+            jugador.salidaObject.flush();
+            puedoJugar=jugador.entradaObject.readBoolean();
+            if (puedoJugar){
+                JButton botonTemp= (JButton) evt.getComponent();
+                // obtiene el i,j de action command del boton
+                String identificadorBoton = botonTemp.getActionCommand();
+                // separa el string del action comand para obtener columnas
+                int columna = 
+                  Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                int fila = 
+                  Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Posiciones posiAtaque = new Posiciones();
+                posiAtaque.listaCoordenada.add(cordAtaque);
+                jugador.salidaObject.writeInt(jugadorEnemigo);
+                jugador.salidaObject.flush();
+                jugador.salidaObject.writeObject(posiAtaque);
+                jugador.salidaObject.flush();
+            }
+            else{
+                return;
+            }
+        } catch (IOException ex) {
+            System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
+            Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    void clickSobreTableroKraken(java.awt.event.MouseEvent evt){
+        try {
+            jugador.salidaObject.writeInt(tipoAtaque);
             jugador.salidaObject.flush();
             puedoJugar=jugador.entradaObject.readBoolean();
             if (puedoJugar){
@@ -1832,7 +1993,98 @@ public class VentanaJugador extends javax.swing.JFrame {
     public void setCantHierro(){
         lbl_CantHierro.setText(cantHierro+"");
     }
-    
+    public void setearLabels(){
+        setCantFuente();
+        setCantMercado();
+        setCantConector();
+        setCantArmeria();
+        setCantMina();
+        setCantTemplo();
+        setCantCanon();
+        setCantCanonM();
+        setCantBomba();
+        setCantCanonBB();
+        setCantBarcoF();
+        setCantEscudo();
+        setCantKraken();
+        setCantPlata();
+        setCantHierro();
+        
+  
+    }
+    public void pintarTableroAtaque(int numTablero){
+        switch (numTablero) {
+            case 1:
+                for(int i=0;i<DIMENSIONES;i++)
+                {
+                    for(int j=0;j<DIMENSIONES;j++)
+                    {
+                    if(tableroLogicoEnemigo1[i][j]!=0){
+                        if(tableroLogicoEnemigo1[i][j]==7){
+                            tableroEnemigo[i][j].setIcon(iconoEquiz);
+                        }
+                        else{
+                            tableroEnemigo[i][j].setIcon(iconoCirculo);
+                        }
+                    }
+                    }
+                }
+                break;
+            case 2:
+                for(int i=0;i<DIMENSIONES;i++)
+                {
+                    for(int j=0;j<DIMENSIONES;j++)
+                    {
+                    if(tableroLogicoEnemigo1[i][j]!=0){
+                        if(tableroLogicoEnemigo1[i][j]==7){
+                            tableroEnemigo[i][j].setIcon(iconoEquiz);
+                        }
+                        else{
+                            tableroEnemigo[i][j].setIcon(iconoCirculo);
+                        }
+                    }
+                    }
+                    
+                }
+                break;
+            case 3:
+                for(int i=0;i<DIMENSIONES;i++)
+                {
+                    for(int j=0;j<DIMENSIONES;j++)
+                    {
+                    if(tableroLogicoEnemigo1[i][j]!=0){
+                        if(tableroLogicoEnemigo1[i][j]==7){
+                            tableroEnemigo[i][j].setIcon(iconoEquiz);
+                        }
+                        else{
+                            tableroEnemigo[i][j].setIcon(iconoCirculo);
+                        }
+                    }
+                    }
+                }    
+                    
+                break;
+            case 4:
+                for(int i=0;i<DIMENSIONES;i++)
+                {
+                    for(int j=0;j<DIMENSIONES;j++)
+                    {
+                    if(tableroLogicoEnemigo1[i][j]!=0){
+                        if(tableroLogicoEnemigo1[i][j]==7){
+                            tableroEnemigo[i][j].setIcon(iconoEquiz);
+                        }
+                        else{
+                            tableroEnemigo[i][j].setIcon(iconoCirculo);
+                        }
+                    }
+                    }
+                }    
+                break;
+                
+            default:
+                throw new AssertionError();
+        }
+    }
     /**
      * @param args the command line arguments
      */

@@ -43,12 +43,13 @@ public class Server {
                ServerSocket server= new ServerSocket(5000);
                 ventana.mostrar("Servidor activo");
                 ventana.mostrar("Esperando Conexiones...");
-                while(listaJugadores.size()<=cantJugadores){
+                while(listaJugadores.size()<cantJugadores){
                     jugador=server.accept();
                     listaJugadores.add(jugador);
                     threadServer hiloServer= new threadServer(jugador,this,listaJugadores.size());
                     hilosServer.add(hiloServer);
                     hiloServer.start();
+                    ventana.mostrar("Se acepto al jugador: "+hiloServer.nameJugador);
                 }
                 for (threadServer thread : hilosServer) {
                     ArrayList<threadServer> copiaHilos = new ArrayList<threadServer>();
@@ -59,6 +60,7 @@ public class Server {
                     }
                     thread.listaEnemigo=copiaHilos;
                 }
+                ventana.mostrar("Empezó el JUegoooo");
                 while (true) 
                 {
 

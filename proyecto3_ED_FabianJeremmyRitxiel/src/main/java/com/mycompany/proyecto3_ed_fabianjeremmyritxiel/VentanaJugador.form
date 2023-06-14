@@ -478,31 +478,49 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ca&#xf1;on BB"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CanonBBActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Canon">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ca&#xf1;on"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CanonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_CanonM">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ca&#xf1;on M"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CanonMActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Bomba">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bomba"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_BombaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_BarcoF">
       <Properties>
         <Property name="text" type="java.lang.String" value="Barco F"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_BarcoFActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Escudo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Escudo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EscudoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_TaboleroP1">
       <Properties>
@@ -675,6 +693,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Kraken"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_KrakenActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel28">
       <Properties>

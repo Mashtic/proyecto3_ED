@@ -53,7 +53,7 @@ public class threadServer extends Thread{
           System.out.println(name);
           this.setNameJugador(name);
           System.out.println("1. Leyo nombre: " + nameJugador);
-          
+          System.out.println("nombre "+nameJugador+numJugador);
     	}
     	catch (IOException e) {e.printStackTrace();}
     	//VARIABLES
@@ -119,8 +119,10 @@ public class threadServer extends Thread{
                  break;
                  case 7:
                     if (numJugador==server.turno){
+                        System.out.println("Holi"+nameJugador);
                         salidaObject.writeBoolean(true);
                         salidaObject.flush();
+                        System.out.println("Chaoooo"+nameJugador);
                         int numJugadorAtacado=entradaObject.readInt();
                         try {
                             Posiciones posiAtaque=(Posiciones)entradaObject.readObject();

@@ -19,7 +19,12 @@ public class Coordenada {
         this.y = y;
         this.acerto=false;
         this.tipoEstructura=0;
-        
+    }
+
+    public Coordenada(int x, int y, int tipoEstructura) {
+        this.x = x;
+        this.y = y;
+        this.tipoEstructura = tipoEstructura;
     }
 
     public int getTipoEstructura() {

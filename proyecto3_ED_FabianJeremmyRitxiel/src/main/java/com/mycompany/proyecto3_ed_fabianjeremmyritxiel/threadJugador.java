@@ -92,13 +92,15 @@ public class threadJugador extends Thread{
                  
                 case 7:
                  {
-                    
                      try {
                          Posiciones posiAtaque=(Posiciones)entrada.readObject();
                          int numJugadorAtacando=entrada.readInt();
                          for (Coordenada cord : posiAtaque.listaCoordenada) {
                              if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
                                  cord.setAcerto(true);
+                                 //DAÑA O ELIMINA ESTRUCTURA
+                                 //coordenada.acerto=true
+                                 //para todod 
                              }
                              ventana.marcar(cord);
                          }
@@ -118,11 +120,63 @@ public class threadJugador extends Thread{
                      } catch (ClassNotFoundException ex) {}
                  }
                 break;
+                case 17:
+                    ventana.mostrar("HOLIIIIIIIIIIIIIIIIIIIIIII");
+                break;
                 case 20:
                  {
                      try {
                          Posiciones resPosi=(Posiciones)entrada.readObject();
-                         
+                         int jugadorAtacado=entrada.readInt();
+                         switch (jugadorAtacado) {
+                             case 1:
+                                for (Coordenada posiRes : resPosi.listaCoordenada) {
+                                    if (posiRes.isAcerto()){
+                                        ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=7;
+                                    }
+                                    else{
+                                        ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=20;
+                                    }
+                                }
+                                 ventana.pintarTableroAtaque(1);
+                                 break;
+                            case 2:
+                                for (Coordenada posiRes : resPosi.listaCoordenada) {
+                                    if (posiRes.isAcerto()){
+                                        ventana.tableroLogicoEnemigo2[posiRes.getX()][posiRes.getY()]=7;
+                                    }    
+                                    else{
+                                        ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=20;
+                                    }
+                                }
+                                 ventana.pintarTableroAtaque(2);
+                                 break;
+                            case 3:
+                                for (Coordenada posiRes : resPosi.listaCoordenada) {
+                                    if (posiRes.isAcerto()){
+                                        ventana.tableroLogicoEnemigo3[posiRes.getX()][posiRes.getY()]=7;
+                                    }    
+                                    else{
+                                        ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=20;
+                                    }
+                                }
+                                 ventana.pintarTableroAtaque(3);
+                                 break;
+                            case 4:
+                                for (Coordenada posiRes : resPosi.listaCoordenada) {
+                                    if (posiRes.isAcerto()){
+                                        ventana.tableroLogicoEnemigo4[posiRes.getX()][posiRes.getY()]=7;
+                                    }  
+                                    else{
+                                        ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=20;
+                                    }
+                                }
+                                 ventana.pintarTableroAtaque(4);
+                                 break;
+                                 
+                             default:
+                                 throw new AssertionError();
+                         }
                      } catch (ClassNotFoundException ex) {}
                  }
                 break;
