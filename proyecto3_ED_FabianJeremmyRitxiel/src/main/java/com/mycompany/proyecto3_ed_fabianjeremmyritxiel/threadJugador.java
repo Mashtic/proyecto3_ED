@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto3_ed_fabianjeremmyritxiel;
 import java.io.*;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -117,6 +118,88 @@ public class threadJugador extends Thread{
                          ventana.jugador.salidaObject.flush();
                          ventana.jugador.salidaObject.writeInt(numJugadorAtacando); 
                          ventana.jugador.salidaObject.flush();
+//                         ventana.jugador.salidaObject.writeInt(opcion); 
+//                         ventana.jugador.salidaObject.flush();
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                break;
+                case 8:
+                 {
+                     try {
+                         Posiciones posiAtaque=(Posiciones)entrada.readObject();
+                         int numJugadorAtacando=entrada.readInt();
+                         Posiciones posiCopia=new Posiciones();
+                         for (Coordenada cord : posiAtaque.listaCoordenada) {
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                                 cord.setAcerto(true);
+                                 posiCopia.listaCoordenada.add(cord);
+                                 for (int i = 0; i < 4; i++) {
+                                    int x=(new Random()).nextInt(20);
+                                    int y=(new Random()).nextInt(20);
+                                    Coordenada cordN= new Coordenada(x,y);
+                                    posiCopia.listaCoordenada.add(cordN);
+                                 }
+                                 for (Coordenada coordenada : posiCopia.listaCoordenada) {
+                                    if(ventana.tableroLogico[coordenada.getX()][coordenada.getY()]!=0){
+                                        coordenada.setAcerto(true);
+                                    }
+                                 }
+                                 //DAÑA O ELIMINA ESTRUCTURA
+                                 //coordenada.acerto=true
+                                 //para todod 
+                            }
+                             else{
+                                 posiCopia.listaCoordenada.add(cord);
+                             }
+                             ventana.marcar(cord);
+                         }
+                         ventana.mostrarAtaque("RECIBIDO: "+posiCopia.toStringAtaque());
+                         ventana.jugador.salidaObject.writeInt(1);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeUTF("ATAQUE: "+posiCopia.toStringAtaque());
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(20);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeObject(posiCopia);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando); 
+                         ventana.jugador.salidaObject.flush();
+//                         ventana.jugador.salidaObject.writeInt(opcion); 
+//                         ventana.jugador.salidaObject.flush();
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                break;
+                case 9:
+                 {
+                     try {
+                         Posiciones posiAtaque=(Posiciones)entrada.readObject();
+                         int numJugadorAtacando=entrada.readInt();
+                         for (Coordenada cord : posiAtaque.listaCoordenada) {
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                                 cord.setAcerto(true);
+                                 //DAÑA O ELIMINA ESTRUCTURA
+                                 //coordenada.acerto=true
+                                 //para todod 
+                             }
+                             ventana.marcar(cord);
+                         }
+                         ventana.mostrarAtaque("RECIBIDO: "+posiAtaque.toStringAtaque());
+                         ventana.jugador.salidaObject.writeInt(1);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeUTF("ATAQUE: "+posiAtaque.toStringAtaque());
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(20);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeObject(posiAtaque);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando); 
+                         ventana.jugador.salidaObject.flush();
+//                         ventana.jugador.salidaObject.writeInt(opcion); 
+//                         ventana.jugador.salidaObject.flush();
                      } catch (ClassNotFoundException ex) {}
                  }
                 break;
@@ -128,6 +211,7 @@ public class threadJugador extends Thread{
                      try {
                          Posiciones resPosi=(Posiciones)entrada.readObject();
                          int jugadorAtacado=entrada.readInt();
+//                         int tipoAtaque=entrada.readInt();
                          switch (jugadorAtacado) {
                              case 1:
                                 for (Coordenada posiRes : resPosi.listaCoordenada) {
@@ -146,7 +230,7 @@ public class threadJugador extends Thread{
                                         ventana.tableroLogicoEnemigo2[posiRes.getX()][posiRes.getY()]=7;
                                     }    
                                     else{
-                                        ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=20;
+                                        ventana.tableroLogicoEnemigo2[posiRes.getX()][posiRes.getY()]=20;
                                     }
                                 }
                                  ventana.pintarTableroAtaque(2);
@@ -157,7 +241,7 @@ public class threadJugador extends Thread{
                                         ventana.tableroLogicoEnemigo3[posiRes.getX()][posiRes.getY()]=7;
                                     }    
                                     else{
-                                        ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=20;
+                                        ventana.tableroLogicoEnemigo3[posiRes.getX()][posiRes.getY()]=20;
                                     }
                                 }
                                  ventana.pintarTableroAtaque(3);
@@ -168,7 +252,7 @@ public class threadJugador extends Thread{
                                         ventana.tableroLogicoEnemigo4[posiRes.getX()][posiRes.getY()]=7;
                                     }  
                                     else{
-                                        ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=20;
+                                        ventana.tableroLogicoEnemigo4[posiRes.getX()][posiRes.getY()]=20;
                                     }
                                 }
                                  ventana.pintarTableroAtaque(4);
@@ -177,6 +261,38 @@ public class threadJugador extends Thread{
                              default:
                                  throw new AssertionError();
                          }
+//                         switch (tipoAtaque) {
+//                             case 7:
+//                                 ventana.cantCanon--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 8:
+//                                 ventana.cantCanonM--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 9:
+//                                 ventana.cantBomba--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 10:
+//                                 ventana.cantCanonBB--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 11:
+//                                 ventana.cantBarcoF--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 12:
+//                                 ventana.cantKraken--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 13:
+//                                 ventana.cantEscudo--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             default:
+//                                 throw new AssertionError();
+//                         }
                      } catch (ClassNotFoundException ex) {}
                  }
                 break;

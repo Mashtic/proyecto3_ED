@@ -25,7 +25,8 @@ public class threadServer extends Thread{
     ObjectInputStream entradaObject;
     String nameJugador;
     ArrayList<threadServer> listaEnemigo=null;
-    
+    int contadorBomba=0;
+    int contadorBB=0;
     public threadServer(Socket jugador, Server server, int numJugador) {
         this.jugador = jugador;
         this.server = server;
@@ -118,20 +119,21 @@ public class threadServer extends Thread{
                     }
                  break;
                  case 7:
-                    if (numJugador==server.turno){
-                        System.out.println("Holi"+nameJugador);
-                        salidaObject.writeBoolean(true);
-                        salidaObject.flush();
-                        System.out.println("Chaoooo"+nameJugador);
+                     
+                    try {
                         int numJugadorAtacado=entradaObject.readInt();
-                        try {
-                            Posiciones posiAtaque=(Posiciones)entradaObject.readObject();
-                            threadServer jugadorAtacado = null;
-                            for (threadServer enemigo : listaEnemigo) {
-                                if (enemigo.numJugador==numJugadorAtacado){
-                                    jugadorAtacado=enemigo;
-                                }
+                        System.out.println("Recibi1");
+                        System.out.println(numJugadorAtacado);
+                        Posiciones posiAtaque=(Posiciones)entradaObject.readObject();
+                        System.out.println("Recibi2");
+                        System.out.println(posiAtaque.toString());
+                        threadServer jugadorAtacado = null;
+                        for (threadServer enemigo : listaEnemigo) {
+                            if (enemigo.numJugador==numJugadorAtacado){
+                                jugadorAtacado=enemigo;
                             }
+                        }
+                        if (numJugador==server.turno){
                             jugadorAtacado.salidaObject.writeInt(1);
                             jugadorAtacado.salidaObject.flush();
                             // envia el mensaje al thread cliente enemigo
@@ -145,16 +147,93 @@ public class threadServer extends Thread{
                             jugadorAtacado.salidaObject.flush();
                             jugadorAtacado.salidaObject.writeInt(this.numJugador);
                             jugadorAtacado.salidaObject.flush();
-                            
-                        } catch (ClassNotFoundException ex) {}
+                            server.cambiarTurno();
+                        }
+
+                    } catch (ClassNotFoundException ex) {}
                         
-                    }
+                 break;
+                 case 8:
+                     
+                    try {
+                        int numJugadorAtacado=entradaObject.readInt();
+                        System.out.println("Recibi1");
+                        System.out.println(numJugadorAtacado);
+                        Posiciones posiAtaque=(Posiciones)entradaObject.readObject();
+                        System.out.println("Recibi2");
+                        System.out.println(posiAtaque.toString());
+                        threadServer jugadorAtacado = null;
+                        for (threadServer enemigo : listaEnemigo) {
+                            if (enemigo.numJugador==numJugadorAtacado){
+                                jugadorAtacado=enemigo;
+                            }
+                        }
+                        if (numJugador==server.turno){
+                            jugadorAtacado.salidaObject.writeInt(1);
+                            jugadorAtacado.salidaObject.flush();
+                            // envia el mensaje al thread cliente enemigo
+                            jugadorAtacado.salidaObject.writeUTF(this.nameJugador+"> Está Atacando "+
+                                    " en las posiciones: "+posiAtaque.toString());
+                            jugadorAtacado.salidaObject.flush();
+                            System.out.println("Se envió mensaje");
+                            jugadorAtacado.salidaObject.writeInt(opcion);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeObject(posiAtaque);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeInt(this.numJugador);
+                            jugadorAtacado.salidaObject.flush();
+                            server.cambiarTurno();
+                        }
+
+                    } catch (ClassNotFoundException ex) {}
+                        
+                 break;
+                 case 9:
+                     
+                    try {
+                        int numJugadorAtacado=entradaObject.readInt();
+                        System.out.println("Recibi1");
+                        System.out.println(numJugadorAtacado);
+                        Posiciones posiAtaque=(Posiciones)entradaObject.readObject();
+                        System.out.println("Recibi2");
+                        System.out.println(posiAtaque.toString());
+                        threadServer jugadorAtacado = null;
+                        for (threadServer enemigo : listaEnemigo) {
+                            if (enemigo.numJugador==numJugadorAtacado){
+                                jugadorAtacado=enemigo;
+                            }
+                        }
+                        if (numJugador==server.turno){
+                            jugadorAtacado.salidaObject.writeInt(1);
+                            jugadorAtacado.salidaObject.flush();
+                            // envia el mensaje al thread cliente enemigo
+                            jugadorAtacado.salidaObject.writeUTF(this.nameJugador+"> Está Atacando "+
+                                    " en las posiciones: "+posiAtaque.toString());
+                            jugadorAtacado.salidaObject.flush();
+                            System.out.println("Se envió mensaje");
+                            jugadorAtacado.salidaObject.writeInt(opcion);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeObject(posiAtaque);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeInt(this.numJugador);
+                            jugadorAtacado.salidaObject.flush();
+                            contadorBomba++;
+                            if (contadorBomba==3){
+                                server.cambiarTurno();
+                                contadorBomba=0;
+                            }
+                            
+                        }
+
+                    } catch (ClassNotFoundException ex) {}
+                        
                  break;
                  case 20:
                  {
                      try {
                         Posiciones resPosiciones=(Posiciones)entradaObject.readObject();
                         int numJugadorAtacante=entradaObject.readInt();
+                        //int tipoAtaque=entradaObject.readInt();
                         threadServer jugadorAtacante=null;
                         for (threadServer enemigo : listaEnemigo) {
                             if (enemigo.numJugador==numJugadorAtacante){
@@ -166,7 +245,9 @@ public class threadServer extends Thread{
                         jugadorAtacante.salidaObject.writeObject(resPosiciones);
                         jugadorAtacante.salidaObject.flush();
                         jugadorAtacante.salidaObject.writeInt(this.numJugador);
-                        jugadorAtacante.salidaObject.flush();
+                        jugadorAtacante.salidaObject.flush(); 
+//                        jugadorAtacante.salidaObject.writeInt(opcion);
+//                        jugadorAtacante.salidaObject.flush();
                         
                      } catch (ClassNotFoundException ex) {}
                  }

@@ -4,13 +4,14 @@
  */
 package com.mycompany.proyecto3_ed_fabianjeremmyritxiel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author fabia
  */
-public class Posiciones {
+public class Posiciones implements Serializable{
     ArrayList<Coordenada> listaCoordenada;
 
     public Posiciones() {

@@ -673,18 +673,23 @@ public class VentanaJugador extends javax.swing.JFrame {
 
     private void btn_TaboleroP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaboleroP1ActionPerformed
         jugadorEnemigo=1;
+        pintarTableroAtaque(1);
     }//GEN-LAST:event_btn_TaboleroP1ActionPerformed
 
     private void btn_TableroP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TableroP2ActionPerformed
         jugadorEnemigo=2;
+        pintarTableroAtaque(2);
     }//GEN-LAST:event_btn_TableroP2ActionPerformed
 
     private void btn_TaberoP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaberoP3ActionPerformed
         jugadorEnemigo=3;
+        pintarTableroAtaque(3);
     }//GEN-LAST:event_btn_TaberoP3ActionPerformed
 
     private void btn_TableroP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TableroP4ActionPerformed
         jugadorEnemigo=4;
+        pintarTableroAtaque(4
+        );
     }//GEN-LAST:event_btn_TableroP4ActionPerformed
 
     private void btn_CanonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CanonActionPerformed
@@ -757,8 +762,8 @@ public class VentanaJugador extends javax.swing.JFrame {
     int cantArmeria=0;
     int cantMina=0;
     int cantTemplo=0;
-    int cantCanon=0;
-    int cantCanonM=0;
+    int cantCanon=5;
+    int cantCanonM=5;
     int cantBomba=0;
     int cantCanonBB=0;
     int cantBarcoF=0;
@@ -814,27 +819,21 @@ public class VentanaJugador extends javax.swing.JFrame {
                             break;
                         case 1:
                             clickSobreTableroFuente(evt);
-                            System.out.println("Estoy aqui"); 
                             break;
                         case 2:
                             clickSobreTableroMercado(evt);
-                            System.out.println("Mercado"); 
                             break;
                         case 3:
                             clickSobreTableroConector(evt);
-                            System.out.println("Conector"); 
                             break;
                         case 4:
-                            clickSobreTableroArmeria(evt);
-                            System.out.println("Armeria"); 
+                            clickSobreTableroArmeria(evt); 
                             break;
                         case 5:
-                            clickSobreTableroMina(evt);
-                            System.out.println("Mina"); 
+                            clickSobreTableroMina(evt); 
                             break;
                         case 6:
                             clickSobreTableroTemplo(evt);
-                            System.out.println("Templo"); 
                             break;    
                         default:
                             throw new AssertionError();
@@ -850,27 +849,21 @@ public class VentanaJugador extends javax.swing.JFrame {
                             break;
                         case 1:
                             mouseSobreTableroFuente(evt);
-                            System.out.println("Fuente"); 
                             break;
                         case 2:
                             mouseSobreTableroMercado(evt);
-                            System.out.println("Mercado"); 
                             break;
                         case 3:
                             mouseSobreTableroConector(evt);
-                            System.out.println("Conector"); 
                             break;
                         case 4:
                             mouseSobreTableroArmeria(evt);
-                            System.out.println("Armeria"); 
                             break;
                         case 5:
                             mouseSobreTableroMina(evt);
-                            System.out.println("Mina"); 
                             break;
                         case 6:
                             mouseSobreTableroTemplo(evt);
-                            System.out.println("Templo"); 
                             break;    
                         default:
                             throw new AssertionError();
@@ -883,27 +876,21 @@ public class VentanaJugador extends javax.swing.JFrame {
                             break;
                         case 1:
                             borrarMouseSobreTableroFuente(evt);
-                            System.out.println("Fuente"); 
                             break;
                         case 2:
                             borrarMouseSobreTableroMercado(evt);
-                            System.out.println("Mercado"); 
                             break;
                         case 3:
                             borrarMouseSobreTableroConector(evt);
-                            System.out.println("Conector"); 
                             break;
                         case 4:
                             borrarMouseSobreTableroArmeria(evt);
-                            System.out.println("Armeria"); 
                             break;
                         case 5:
                             borrarMouseSobreTableroMina(evt);
-                            System.out.println("Mina"); 
                             break;
                         case 6:
                             borrarMouseSobreTableroTemplo(evt);
-                            System.out.println("Templo"); 
                             break;    
                         default:
                             throw new AssertionError();
@@ -920,31 +907,24 @@ public class VentanaJugador extends javax.swing.JFrame {
                             break;
                         case 7:
                             clickSobreTableroCanon(evt);
-                            System.out.println("Estoy aqui"); 
                             break;
                         case 8:
                             clickSobreTableroCanonM(evt);
-                            System.out.println("Mercado"); 
                             break;
                         case 9:
                             clickSobreTableroBomba(evt);
-                            System.out.println("Conector"); 
                             break;
                         case 10:
                             clickSobreTableroCanonBB(evt);
-                            System.out.println("Armeria"); 
                             break;
                         case 11:
                             clickSobreTableroBarcoFF(evt);
-                            System.out.println("Mina"); 
                             break;
                         case 12:
                             clickSobreTableroKraken(evt);
-                            System.out.println("Templo"); 
                             break;  
                         case 13:
                             clickSobreTableroEscudo(evt);
-                            System.out.println("Templo"); 
                             break;
                         default:
                             throw new AssertionError();
@@ -1013,6 +993,8 @@ public class VentanaJugador extends javax.swing.JFrame {
             tableroLogico[columna+1][fila]=tipoEstructura;
             tableroLogico[columna][fila+1]=tipoEstructura;
             tableroLogico[columna+1][fila+1]=tipoEstructura;
+            cantFuente--;
+            setearLabels();
             //AGREGAR A GRAFO                 
                     
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -1076,6 +1058,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLogico[columna][fila+1]=tipoEstructura;
                     //agregar grafo
                 }
+                cantMercado--;
+                setearLabels();
                              
                     
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -1144,6 +1128,8 @@ public class VentanaJugador extends javax.swing.JFrame {
             try {
                 tableroLabels[columna][fila].setIcon(iconoConector);
                 tableroLogico[columna][fila]=tipoEstructura;
+                cantConector--;
+                setearLabels();
                              
                     
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -1228,6 +1214,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLabels[columna][fila+1].setIcon(iconoArmeria);
                     tableroLogico[columna][fila+1]=tipoEstructura;
                 }
+                cantArmeria--;
+                setearLabels();
                              
                     
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -1312,7 +1300,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLabels[columna][fila+1].setIcon(iconoMina);
                     tableroLogico[columna][fila+1]=tipoEstructura;
                 }
-                             
+                cantMina--;
+                setearLabels();             
                     
             } catch (ArrayIndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
@@ -1396,7 +1385,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLabels[columna][fila+1].setIcon(iconoTemplo);
                     tableroLogico[columna][fila+1]=tipoEstructura;
                 }
-                             
+                cantTemplo--;
+                setearLabels();            
                     
             } catch (ArrayIndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
@@ -1728,11 +1718,10 @@ public class VentanaJugador extends javax.swing.JFrame {
     }
     void clickSobreTableroCanon(java.awt.event.MouseEvent evt){
         try {
-            jugador.salidaObject.writeInt(tipoAtaque);
-            System.out.println("TipoAtaque"+ tipoAtaque);
-            jugador.salidaObject.flush();
-            puedoJugar=jugador.entradaObject.readBoolean();
-            if (puedoJugar){
+            if(cantCanon!=0){
+                jugador.salidaObject.writeInt(tipoAtaque);
+                System.out.println("TipoAtaque"+ tipoAtaque);
+                jugador.salidaObject.flush();
                 JButton botonTemp= (JButton) evt.getComponent();
                 // obtiene el i,j de action command del boton
                 String identificadorBoton = botonTemp.getActionCommand();
@@ -1741,17 +1730,17 @@ public class VentanaJugador extends javax.swing.JFrame {
                   Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
                 int fila = 
                   Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
-                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Coordenada cordAtaque= new Coordenada (columna, fila);
                 Posiciones posiAtaque = new Posiciones();
                 posiAtaque.listaCoordenada.add(cordAtaque);
                 jugador.salidaObject.writeInt(jugadorEnemigo);
                 jugador.salidaObject.flush();
                 jugador.salidaObject.writeObject(posiAtaque);
                 jugador.salidaObject.flush();
+                cantCanon--;
+                setearLabels();
             }
-            else{
-                return;
-            }
+            
         } catch (IOException ex) {
             System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
             Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
@@ -1759,10 +1748,10 @@ public class VentanaJugador extends javax.swing.JFrame {
     }
     void clickSobreTableroCanonM(java.awt.event.MouseEvent evt){
         try {
-            jugador.salidaObject.writeInt(tipoAtaque);
-            jugador.salidaObject.flush();
-            puedoJugar=jugador.entradaObject.readBoolean();
-            if (puedoJugar){
+            if(cantCanonM!=0){
+                jugador.salidaObject.writeInt(tipoAtaque);
+                System.out.println("TipoAtaque"+ tipoAtaque);
+                jugador.salidaObject.flush();
                 JButton botonTemp= (JButton) evt.getComponent();
                 // obtiene el i,j de action command del boton
                 String identificadorBoton = botonTemp.getActionCommand();
@@ -1771,16 +1760,13 @@ public class VentanaJugador extends javax.swing.JFrame {
                   Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
                 int fila = 
                   Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
-                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Coordenada cordAtaque= new Coordenada (columna, fila);
                 Posiciones posiAtaque = new Posiciones();
                 posiAtaque.listaCoordenada.add(cordAtaque);
                 jugador.salidaObject.writeInt(jugadorEnemigo);
                 jugador.salidaObject.flush();
                 jugador.salidaObject.writeObject(posiAtaque);
                 jugador.salidaObject.flush();
-            }
-            else{
-                return;
             }
         } catch (IOException ex) {
             System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
@@ -1789,28 +1775,51 @@ public class VentanaJugador extends javax.swing.JFrame {
     }
     void clickSobreTableroBomba(java.awt.event.MouseEvent evt){
         try {
-            jugador.salidaObject.writeInt(tipoAtaque);
-            jugador.salidaObject.flush();
-            puedoJugar=jugador.entradaObject.readBoolean();
-            if (puedoJugar){
-                JButton botonTemp= (JButton) evt.getComponent();
-                // obtiene el i,j de action command del boton
-                String identificadorBoton = botonTemp.getActionCommand();
-                // separa el string del action comand para obtener columnas
-                int columna = 
-                  Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
-                int fila = 
-                  Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
-                Coordenada cordAtaque= new Coordenada (fila, columna);
-                Posiciones posiAtaque = new Posiciones();
-                posiAtaque.listaCoordenada.add(cordAtaque);
-                jugador.salidaObject.writeInt(jugadorEnemigo);
-                jugador.salidaObject.flush();
-                jugador.salidaObject.writeObject(posiAtaque);
-                jugador.salidaObject.flush();
-            }
-            else{
-                return;
+            if(cantBomba!=0){
+                if (horizontal==1){
+                    jugador.salidaObject.writeInt(tipoAtaque);
+                    System.out.println("TipoAtaque"+ tipoAtaque);
+                    jugador.salidaObject.flush();
+                    JButton botonTemp= (JButton) evt.getComponent();
+                    // obtiene el i,j de action command del boton
+                    String identificadorBoton = botonTemp.getActionCommand();
+                    // separa el string del action comand para obtener columnas
+                    int columna = 
+                      Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                    int fila = 
+                      Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                    Coordenada cordAtaque= new Coordenada (columna, fila);
+                    Posiciones posiAtaque = new Posiciones();
+                    Coordenada cordAtaqueOtro=new Coordenada (columna+1, fila);
+                    posiAtaque.listaCoordenada.add(cordAtaque);
+                    posiAtaque.listaCoordenada.add(cordAtaqueOtro);
+                    jugador.salidaObject.writeInt(jugadorEnemigo);
+                    jugador.salidaObject.flush();
+                    jugador.salidaObject.writeObject(posiAtaque);
+                    jugador.salidaObject.flush(); 
+                }
+                else{
+                    jugador.salidaObject.writeInt(tipoAtaque);
+                    System.out.println("TipoAtaque"+ tipoAtaque);
+                    jugador.salidaObject.flush();
+                    JButton botonTemp= (JButton) evt.getComponent();
+                    // obtiene el i,j de action command del boton
+                    String identificadorBoton = botonTemp.getActionCommand();
+                    // separa el string del action comand para obtener columnas
+                    int columna = 
+                      Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
+                    int fila = 
+                      Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
+                    Coordenada cordAtaque= new Coordenada (columna, fila);
+                    Posiciones posiAtaque = new Posiciones();
+                    Coordenada cordAtaqueOtro=new Coordenada (columna, fila+1);
+                    posiAtaque.listaCoordenada.add(cordAtaque);
+                    posiAtaque.listaCoordenada.add(cordAtaqueOtro);
+                    jugador.salidaObject.writeInt(jugadorEnemigo);
+                    jugador.salidaObject.flush();
+                    jugador.salidaObject.writeObject(posiAtaque);
+                    jugador.salidaObject.flush();
+                }
             }
         } catch (IOException ex) {
             System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
@@ -2035,8 +2044,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                 {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
-                    if(tableroLogicoEnemigo1[i][j]!=0){
-                        if(tableroLogicoEnemigo1[i][j]==7){
+                    if(tableroLogicoEnemigo2[i][j]!=0){
+                        if(tableroLogicoEnemigo2[i][j]==7){
                             tableroEnemigo[i][j].setIcon(iconoEquiz);
                         }
                         else{
@@ -2052,8 +2061,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                 {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
-                    if(tableroLogicoEnemigo1[i][j]!=0){
-                        if(tableroLogicoEnemigo1[i][j]==7){
+                    if(tableroLogicoEnemigo3[i][j]!=0){
+                        if(tableroLogicoEnemigo3[i][j]==7){
                             tableroEnemigo[i][j].setIcon(iconoEquiz);
                         }
                         else{
@@ -2069,8 +2078,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                 {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
-                    if(tableroLogicoEnemigo1[i][j]!=0){
-                        if(tableroLogicoEnemigo1[i][j]==7){
+                    if(tableroLogicoEnemigo4[i][j]!=0){
+                        if(tableroLogicoEnemigo4[i][j]==7){
                             tableroEnemigo[i][j].setIcon(iconoEquiz);
                         }
                         else{

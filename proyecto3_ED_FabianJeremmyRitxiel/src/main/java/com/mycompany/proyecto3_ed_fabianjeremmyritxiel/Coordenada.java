@@ -4,11 +4,13 @@
  */
 package com.mycompany.proyecto3_ed_fabianjeremmyritxiel;
 
+import java.io.Serializable;
+
 /**
  *
  * @author fabia
  */
-public class Coordenada {
+public class Coordenada implements Serializable{
     private int x;
     private int y;
     private boolean acerto;

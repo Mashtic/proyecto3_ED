@@ -34,6 +34,7 @@ public class Server {
         else{
             turno++;
         }
+        ventana.mostrar("El turno es de: "+ turno);
     }
     
     public void runServer(){
@@ -61,6 +62,7 @@ public class Server {
                     thread.listaEnemigo=copiaHilos;
                 }
                 ventana.mostrar("Empezó el JUegoooo");
+                ventana.mostrar("El turno es de: "+ turno);
                 while (true) 
                 {
 
