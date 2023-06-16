@@ -617,15 +617,17 @@ public class VentanaJugador extends javax.swing.JFrame {
             // se toma lo escrito
             String mensaje = txf_Mensaje.getText();
             // se muestra en el text area
-            txa_Mensaje.append(jugador.getNombre()+"> "+ mensaje + "\n");
+            mensaje=jugador.nomPlayer+">"+mensaje;
+            mostrar(mensaje);
             // se limpia el textfield
             txf_Mensaje.setText("");
-
             // envia al server la opcion 4 para que le pase al enemigo
             // lo escrito
             jugador.salidaObject.writeInt(4);
+            jugador.salidaObject.flush();
             // le envia el mensaje
-            jugador.salidaObject.writeUTF(jugador.getNombre()+"> "+mensaje);
+            jugador.salidaObject.writeUTF(mensaje);
+            jugador.salidaObject.flush();
             
         } catch (IOException ex) {
 
@@ -764,7 +766,7 @@ public class VentanaJugador extends javax.swing.JFrame {
     int cantTemplo=0;
     int cantCanon=5;
     int cantCanonM=5;
-    int cantBomba=0;
+    int cantBomba=5;
     int cantCanonBB=0;
     int cantBarcoF=0;
     int cantEscudo=0;
