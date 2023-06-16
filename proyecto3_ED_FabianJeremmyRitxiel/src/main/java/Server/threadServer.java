@@ -268,7 +268,6 @@ public class threadServer extends Thread{
                         
                  break;
                  case 11:
-                     
                     try {
                         int numJugadorAtacado=entradaObject.readInt();
                         System.out.println("Recibi1");
