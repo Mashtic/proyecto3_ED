@@ -267,6 +267,44 @@ public class threadServer extends Thread{
                     } catch (ClassNotFoundException ex) {}
                         
                  break;
+                 case 11:
+                     
+                    try {
+                        int numJugadorAtacado=entradaObject.readInt();
+                        System.out.println("Recibi1");
+                        System.out.println(numJugadorAtacado);
+                        Posiciones posiAtaque=(Posiciones)entradaObject.readObject();
+                        System.out.println("Recibi2");
+                        System.out.println(posiAtaque.toString());
+                        threadServer jugadorAtacado = null;
+                        for (threadServer enemigo : listaEnemigo) {
+                            if (enemigo.numJugador==numJugadorAtacado){
+                                jugadorAtacado=enemigo;
+                            }
+                        }
+                        if (numJugador==server.turno){
+                            jugadorAtacado.salidaObject.writeInt(1);
+                            jugadorAtacado.salidaObject.flush();
+                            // envia el mensaje al thread cliente enemigo
+                            jugadorAtacado.salidaObject.writeUTF(this.nameJugador+"> Está investigando "+
+                                    " en las posiciones: "+posiAtaque.toString());
+                            jugadorAtacado.salidaObject.flush();
+                            System.out.println("Se envió mensaje");
+                            try {
+                                sleep(90000);
+                            } catch (InterruptedException ex) {}
+                            jugadorAtacado.salidaObject.writeInt(opcion);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeObject(posiAtaque);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeInt(this.numJugador);
+                            jugadorAtacado.salidaObject.flush();
+                            server.cambiarTurno();
+                        }
+
+                    } catch (ClassNotFoundException ex) {}
+                        
+                 break;
                  case 20:
                  {
                      try {
@@ -280,6 +318,30 @@ public class threadServer extends Thread{
                             }
                         }
                         jugadorAtacante.salidaObject.writeInt(20);
+                        jugadorAtacante.salidaObject.flush();
+                        jugadorAtacante.salidaObject.writeObject(resPosiciones);
+                        jugadorAtacante.salidaObject.flush();
+                        jugadorAtacante.salidaObject.writeInt(this.numJugador);
+                        jugadorAtacante.salidaObject.flush(); 
+//                        jugadorAtacante.salidaObject.writeInt(opcion);
+//                        jugadorAtacante.salidaObject.flush();
+                        
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                 break;
+                 case 21:
+                 {
+                     try {
+                        Posiciones resPosiciones=(Posiciones)entradaObject.readObject();
+                        int numJugadorAtacante=entradaObject.readInt();
+                        //int tipoAtaque=entradaObject.readInt();
+                        threadServer jugadorAtacante=null;
+                        for (threadServer enemigo : listaEnemigo) {
+                            if (enemigo.numJugador==numJugadorAtacante){
+                                jugadorAtacante=enemigo;
+                            }
+                        }
+                        jugadorAtacante.salidaObject.writeInt(21);
                         jugadorAtacante.salidaObject.flush();
                         jugadorAtacante.salidaObject.writeObject(resPosiciones);
                         jugadorAtacante.salidaObject.flush();

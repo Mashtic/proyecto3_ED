@@ -235,6 +235,32 @@ public class threadJugador extends Thread{
                      } catch (ClassNotFoundException ex) {}
                  }
                 break;
+                case 11:
+                 {
+                     try {
+                         Posiciones posiAtaque=(Posiciones)entrada.readObject();
+                         int numJugadorAtacando=entrada.readInt();
+                         for (Coordenada cord : posiAtaque.listaCoordenada) {
+                            cord.setTipoEstructura(ventana.tableroLogico[cord.getX()][cord.getY()]);
+                         }
+                         ventana.mostrarAtaque("RECIBIDO: Robando posiciones"+posiAtaque.toString());
+                         ventana.jugador.salidaObject.writeInt(1);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeUTF("ATAQUE: Se robaron"+posiAtaque.toString());
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(21);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeObject(posiAtaque);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando); 
+                         ventana.jugador.salidaObject.flush();
+//                         ventana.jugador.salidaObject.writeInt(opcion); 
+//                         ventana.jugador.salidaObject.flush();
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                break;
                 case 17:
                     ventana.mostrar("HOLIIIIIIIIIIIIIIIIIIIIIII");
                 break;
@@ -328,7 +354,76 @@ public class threadJugador extends Thread{
                      } catch (ClassNotFoundException ex) {}
                  }
                 break;
-
+                case 21:
+                 {
+                     try {
+                         Posiciones resPosi=(Posiciones)entrada.readObject();
+                         int jugadorAtacado=entrada.readInt();
+//                         int tipoAtaque=entrada.readInt();
+                         switch (jugadorAtacado) {
+                             case 1:
+                                for (Coordenada posiRes : resPosi.listaCoordenada) {
+                                    ventana.tableroLogicoEnemigo1[posiRes.getX()][posiRes.getY()]=posiRes.getTipoEstructura();
+                                }
+                                 ventana.pintarTableroAtaque(1);
+                                 break;
+                            case 2:
+                                for (Coordenada posiRes : resPosi.listaCoordenada) {
+                                    ventana.tableroLogicoEnemigo2[posiRes.getX()][posiRes.getY()]=posiRes.getTipoEstructura();
+                                }
+                                 ventana.pintarTableroAtaque(2);
+                                 break;
+                            case 3:
+                                for (Coordenada posiRes : resPosi.listaCoordenada) {
+                                    ventana.tableroLogicoEnemigo3[posiRes.getX()][posiRes.getY()]=posiRes.getTipoEstructura();
+                                }
+                                 ventana.pintarTableroAtaque(3);
+                                 break;
+                            case 4:
+                                for (Coordenada posiRes : resPosi.listaCoordenada) {
+                                    ventana.tableroLogicoEnemigo4[posiRes.getX()][posiRes.getY()]=posiRes.getTipoEstructura();
+                                }
+                                 ventana.pintarTableroAtaque(4);
+                                 break;
+                                 
+                             default:
+                                 throw new AssertionError();
+                         }
+//                         switch (tipoAtaque) {
+//                             case 7:
+//                                 ventana.cantCanon--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 8:
+//                                 ventana.cantCanonM--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 9:
+//                                 ventana.cantBomba--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 10:
+//                                 ventana.cantCanonBB--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 11:
+//                                 ventana.cantBarcoF--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 12:
+//                                 ventana.cantKraken--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             case 13:
+//                                 ventana.cantEscudo--;
+//                                 ventana.setearLabels();
+//                                 break;
+//                             default:
+//                                 throw new AssertionError();
+//                         }
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                break;    
 
                     
             }

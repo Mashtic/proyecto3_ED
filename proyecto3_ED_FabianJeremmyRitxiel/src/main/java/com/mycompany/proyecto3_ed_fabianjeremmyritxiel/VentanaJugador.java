@@ -6,6 +6,7 @@ package com.mycompany.proyecto3_ed_fabianjeremmyritxiel;
 
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -1860,10 +1861,10 @@ public class VentanaJugador extends javax.swing.JFrame {
     }
     void clickSobreTableroBarcoFF(java.awt.event.MouseEvent evt){
         try {
-            jugador.salidaObject.writeInt(tipoAtaque);
-            jugador.salidaObject.flush();
-            puedoJugar=jugador.entradaObject.readBoolean();
-            if (puedoJugar){
+            if(cantBarcoF!=0){
+                jugador.salidaObject.writeInt(tipoAtaque);
+                System.out.println("TipoAtaque"+ tipoAtaque);
+                jugador.salidaObject.flush();
                 JButton botonTemp= (JButton) evt.getComponent();
                 // obtiene el i,j de action command del boton
                 String identificadorBoton = botonTemp.getActionCommand();
@@ -1872,17 +1873,22 @@ public class VentanaJugador extends javax.swing.JFrame {
                   Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
                 int fila = 
                   Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
-                Coordenada cordAtaque= new Coordenada (fila, columna);
+                int num=(new Random()).nextInt(5)+4;
                 Posiciones posiAtaque = new Posiciones();
-                posiAtaque.listaCoordenada.add(cordAtaque);
+                for (int x = columna-num; x <= columna+num; x++) {
+                    for (int y = fila-num; y <= fila+num; y++) {
+                        Coordenada cordAtaque= new Coordenada (x, y);
+                        posiAtaque.listaCoordenada.add(cordAtaque);
+                    }
+                }
                 jugador.salidaObject.writeInt(jugadorEnemigo);
                 jugador.salidaObject.flush();
                 jugador.salidaObject.writeObject(posiAtaque);
                 jugador.salidaObject.flush();
+                cantBarcoF--;
+                setearLabels();
             }
-            else{
-                return;
-            }
+            
         } catch (IOException ex) {
             System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
             Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);
@@ -2030,14 +2036,40 @@ public class VentanaJugador extends javax.swing.JFrame {
                 {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
-                    if(tableroLogicoEnemigo1[i][j]!=0){
-                        if(tableroLogicoEnemigo1[i][j]==7){
-                            tableroEnemigo[i][j].setIcon(iconoEquiz);
+                        switch (tableroLogicoEnemigo1[i][j]) {
+                            case 0:
+                                tableroEnemigo[i][j].setIcon(iconoVacio);
+                                break;
+                            case 1:
+                                tableroEnemigo[i][j].setIcon(iconoFuente);
+                                break;
+                            case 2:
+                                tableroEnemigo[i][j].setIcon(iconoMercado);
+                                break;
+                            case 3:
+                                tableroEnemigo[i][j].setIcon(iconoConector);
+                                break;
+                            case 4:
+                                tableroEnemigo[i][j].setIcon(iconoArmeria);
+                                break;
+                            case 5:
+                                tableroEnemigo[i][j].setIcon(iconoMina);
+                                break;
+                            case 6:
+                                tableroEnemigo[i][j].setIcon(iconoTemplo);
+                                break;
+                            case 7:
+                                tableroEnemigo[i][j].setIcon(iconoEquiz);
+                                break;
+                            case 20:
+                                tableroEnemigo[i][j].setIcon(iconoCirculo);
+                                break;
+//                            case 0:
+//                                
+//                                break;
+                            default:
+                                throw new AssertionError();
                         }
-                        else{
-                            tableroEnemigo[i][j].setIcon(iconoCirculo);
-                        }
-                    }
                     }
                 }
                 break;
@@ -2046,16 +2078,41 @@ public class VentanaJugador extends javax.swing.JFrame {
                 {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
-                    if(tableroLogicoEnemigo2[i][j]!=0){
-                        if(tableroLogicoEnemigo2[i][j]==7){
-                            tableroEnemigo[i][j].setIcon(iconoEquiz);
-                        }
-                        else{
-                            tableroEnemigo[i][j].setIcon(iconoCirculo);
+                        switch (tableroLogicoEnemigo2[i][j]) {
+                            case 0:
+                                tableroEnemigo[i][j].setIcon(iconoVacio);
+                                break;
+                            case 1:
+                                tableroEnemigo[i][j].setIcon(iconoFuente);
+                                break;
+                            case 2:
+                                tableroEnemigo[i][j].setIcon(iconoMercado);
+                                break;
+                            case 3:
+                                tableroEnemigo[i][j].setIcon(iconoConector);
+                                break;
+                            case 4:
+                                tableroEnemigo[i][j].setIcon(iconoArmeria);
+                                break;
+                            case 5:
+                                tableroEnemigo[i][j].setIcon(iconoMina);
+                                break;
+                            case 6:
+                                tableroEnemigo[i][j].setIcon(iconoTemplo);
+                                break;
+                            case 7:
+                                tableroEnemigo[i][j].setIcon(iconoEquiz);
+                                break;
+                            case 20:
+                                tableroEnemigo[i][j].setIcon(iconoCirculo);
+                                break;
+//                            case 0:
+//                                
+//                                break;
+                            default:
+                                throw new AssertionError();
                         }
                     }
-                    }
-                    
                 }
                 break;
             case 3:
@@ -2063,33 +2120,84 @@ public class VentanaJugador extends javax.swing.JFrame {
                 {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
-                    if(tableroLogicoEnemigo3[i][j]!=0){
-                        if(tableroLogicoEnemigo3[i][j]==7){
-                            tableroEnemigo[i][j].setIcon(iconoEquiz);
-                        }
-                        else{
-                            tableroEnemigo[i][j].setIcon(iconoCirculo);
+                        switch (tableroLogicoEnemigo3[i][j]) {
+                            case 0:
+                                tableroEnemigo[i][j].setIcon(iconoVacio);
+                                break;
+                            case 1:
+                                tableroEnemigo[i][j].setIcon(iconoFuente);
+                                break;
+                            case 2:
+                                tableroEnemigo[i][j].setIcon(iconoMercado);
+                                break;
+                            case 3:
+                                tableroEnemigo[i][j].setIcon(iconoConector);
+                                break;
+                            case 4:
+                                tableroEnemigo[i][j].setIcon(iconoArmeria);
+                                break;
+                            case 5:
+                                tableroEnemigo[i][j].setIcon(iconoMina);
+                                break;
+                            case 6:
+                                tableroEnemigo[i][j].setIcon(iconoTemplo);
+                                break;
+                            case 7:
+                                tableroEnemigo[i][j].setIcon(iconoEquiz);
+                                break;
+                            case 20:
+                                tableroEnemigo[i][j].setIcon(iconoCirculo);
+                                break;
+//                            case 0:
+//                                
+//                                break;
+                            default:
+                                throw new AssertionError();
                         }
                     }
-                    }
-                }    
-                    
+                } 
                 break;
             case 4:
                 for(int i=0;i<DIMENSIONES;i++)
                 {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
-                    if(tableroLogicoEnemigo4[i][j]!=0){
-                        if(tableroLogicoEnemigo4[i][j]==7){
-                            tableroEnemigo[i][j].setIcon(iconoEquiz);
-                        }
-                        else{
-                            tableroEnemigo[i][j].setIcon(iconoCirculo);
+                        switch (tableroLogicoEnemigo4[i][j]) {
+                            case 0:
+                                tableroEnemigo[i][j].setIcon(iconoVacio);
+                                break;
+                            case 1:
+                                tableroEnemigo[i][j].setIcon(iconoFuente);
+                                break;
+                            case 2:
+                                tableroEnemigo[i][j].setIcon(iconoMercado);
+                                break;
+                            case 3:
+                                tableroEnemigo[i][j].setIcon(iconoConector);
+                                break;
+                            case 4:
+                                tableroEnemigo[i][j].setIcon(iconoArmeria);
+                                break;
+                            case 5:
+                                tableroEnemigo[i][j].setIcon(iconoMina);
+                                break;
+                            case 6:
+                                tableroEnemigo[i][j].setIcon(iconoTemplo);
+                                break;
+                            case 7:
+                                tableroEnemigo[i][j].setIcon(iconoEquiz);
+                                break;
+                            case 20:
+                                tableroEnemigo[i][j].setIcon(iconoCirculo);
+                                break;
+//                            case 0:
+//                                
+//                                break;
+                            default:
+                                throw new AssertionError();
                         }
                     }
-                    }
-                }    
+                }  
                 break;
                 
             default:
