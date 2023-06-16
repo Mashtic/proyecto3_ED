@@ -203,6 +203,38 @@ public class threadJugador extends Thread{
                      } catch (ClassNotFoundException ex) {}
                  }
                 break;
+                case 10:
+                 {
+                     try {
+                         Posiciones posiAtaque=(Posiciones)entrada.readObject();
+                         int numJugadorAtacando=entrada.readInt();
+                         for (Coordenada cord : posiAtaque.listaCoordenada) {
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                                 cord.setAcerto(true);
+                                 //DAÑA O ELIMINA ESTRUCTURA
+                                 //coordenada.acerto=true
+                                 //para todod 
+                             }
+                             ventana.marcar(cord);
+                         }
+                         ventana.mostrarAtaque("RECIBIDO: "+posiAtaque.toStringAtaque());
+                         ventana.jugador.salidaObject.writeInt(1);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeUTF("ATAQUE: "+posiAtaque.toStringAtaque());
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(20);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeObject(posiAtaque);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando); 
+                         ventana.jugador.salidaObject.flush();
+//                         ventana.jugador.salidaObject.writeInt(opcion); 
+//                         ventana.jugador.salidaObject.flush();
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                break;
                 case 17:
                     ventana.mostrar("HOLIIIIIIIIIIIIIIIIIIIIIII");
                 break;

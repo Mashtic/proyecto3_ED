@@ -767,8 +767,8 @@ public class VentanaJugador extends javax.swing.JFrame {
     int cantCanon=5;
     int cantCanonM=5;
     int cantBomba=5;
-    int cantCanonBB=0;
-    int cantBarcoF=0;
+    int cantCanonBB=10;
+    int cantBarcoF=10;
     int cantEscudo=0;
     int cantKraken=0;
     int cantPlata=4000;
@@ -1830,10 +1830,10 @@ public class VentanaJugador extends javax.swing.JFrame {
     }
     void clickSobreTableroCanonBB(java.awt.event.MouseEvent evt){
         try {
-            jugador.salidaObject.writeInt(tipoAtaque);
-            jugador.salidaObject.flush();
-            puedoJugar=jugador.entradaObject.readBoolean();
-            if (puedoJugar){
+            if(cantCanonBB!=0){
+                jugador.salidaObject.writeInt(tipoAtaque);
+                System.out.println("TipoAtaque"+ tipoAtaque);
+                jugador.salidaObject.flush();
                 JButton botonTemp= (JButton) evt.getComponent();
                 // obtiene el i,j de action command del boton
                 String identificadorBoton = botonTemp.getActionCommand();
@@ -1842,17 +1842,17 @@ public class VentanaJugador extends javax.swing.JFrame {
                   Integer.parseInt(identificadorBoton.substring(0,identificadorBoton.indexOf(",")));
                 int fila = 
                   Integer.parseInt(identificadorBoton.substring(1+identificadorBoton.indexOf(",")));
-                Coordenada cordAtaque= new Coordenada (fila, columna);
+                Coordenada cordAtaque= new Coordenada (columna, fila);
                 Posiciones posiAtaque = new Posiciones();
                 posiAtaque.listaCoordenada.add(cordAtaque);
                 jugador.salidaObject.writeInt(jugadorEnemigo);
                 jugador.salidaObject.flush();
                 jugador.salidaObject.writeObject(posiAtaque);
                 jugador.salidaObject.flush();
+                cantCanonBB--;
+                setearLabels();
             }
-            else{
-                return;
-            }
+            
         } catch (IOException ex) {
             System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
             Logger.getLogger(VentanaJugador.class.getName()).log(Level.SEVERE, null, ex);

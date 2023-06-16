@@ -228,6 +228,45 @@ public class threadServer extends Thread{
                     } catch (ClassNotFoundException ex) {}
                         
                  break;
+                 case 10:
+                    try {
+                        int numJugadorAtacado=entradaObject.readInt();
+                        System.out.println("Recibi1");
+                        System.out.println(numJugadorAtacado);
+                        Posiciones posiAtaque=(Posiciones)entradaObject.readObject();
+                        System.out.println("Recibi2");
+                        System.out.println(posiAtaque.toString());
+                        threadServer jugadorAtacado = null;
+                        for (threadServer enemigo : listaEnemigo) {
+                            if (enemigo.numJugador==numJugadorAtacado){
+                                jugadorAtacado=enemigo;
+                            }
+                        }
+                        if (numJugador==server.turno){
+                            jugadorAtacado.salidaObject.writeInt(1);
+                            jugadorAtacado.salidaObject.flush();
+                            // envia el mensaje al thread cliente enemigo
+                            jugadorAtacado.salidaObject.writeUTF(this.nameJugador+"> Está Atacando "+
+                                    " en las posiciones: "+posiAtaque.toString());
+                            jugadorAtacado.salidaObject.flush();
+                            System.out.println("Se envió mensaje");
+                            jugadorAtacado.salidaObject.writeInt(opcion);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeObject(posiAtaque);
+                            jugadorAtacado.salidaObject.flush();
+                            jugadorAtacado.salidaObject.writeInt(this.numJugador);
+                            jugadorAtacado.salidaObject.flush();
+                            contadorBB++;
+                            if (contadorBB==10) {
+                                server.cambiarTurno();
+                                contadorBB=0;
+                            }
+                            
+                        }
+
+                    } catch (ClassNotFoundException ex) {}
+                        
+                 break;
                  case 20:
                  {
                      try {
