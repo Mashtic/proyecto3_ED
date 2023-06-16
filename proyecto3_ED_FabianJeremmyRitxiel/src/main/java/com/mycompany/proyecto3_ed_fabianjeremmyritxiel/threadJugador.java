@@ -98,6 +98,15 @@ public class threadJugador extends Thread{
                          int numJugadorAtacando=entrada.readInt();
                          for (Coordenada cord : posiAtaque.listaCoordenada) {
                              if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                                 if(ventana.tableroLogico[cord.getX()][cord.getY()]==-1){
+                                     ventana.jugador.salidaObject.writeInt(22);
+                                     ventana.jugador.salidaObject.flush();
+                                     ventana.jugador.salidaObject.writeInt(numJugadorAtacando);
+                                     ventana.jugador.salidaObject.flush();
+                                     
+                                 }else{
+                                     cord.setAcerto(true);
+                                 }
                                  cord.setAcerto(true);
                                  //DAÑA O ELIMINA ESTRUCTURA
                                  //coordenada.acerto=true
@@ -423,8 +432,55 @@ public class threadJugador extends Thread{
 //                         }
                      } catch (ClassNotFoundException ex) {}
                  }
-                break;    
-
+                break; 
+                case 22:
+                {
+                try {
+                         Posiciones posiAtaque=(Posiciones)entrada.readObject();
+                         int numJugadorAtacando=entrada.readInt();
+                         Posiciones posiCopia=new Posiciones();
+                         for (Coordenada cord : posiAtaque.listaCoordenada) {
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                                 cord.setAcerto(true);
+                                 posiCopia.listaCoordenada.add(cord);
+                                 for (int i = 0; i < 4; i++) {
+                                    int x=(new Random()).nextInt(20);
+                                    int y=(new Random()).nextInt(20);
+                                    Coordenada cordN= new Coordenada(x,y);
+                                    posiCopia.listaCoordenada.add(cordN);
+                                 }
+                                 for (Coordenada coordenada : posiCopia.listaCoordenada) {
+                                    if(ventana.tableroLogico[coordenada.getX()][coordenada.getY()]!=0){
+                                        coordenada.setAcerto(true);
+                                    }
+                                 }
+                                 //DAÑA O ELIMINA ESTRUCTURA
+                                 //coordenada.acerto=true
+                                 //para todod 
+                            }
+                             else{
+                                 posiCopia.listaCoordenada.add(cord);
+                             }
+                             ventana.marcar(cord);
+                         }
+                         ventana.mostrarAtaque("RECIBIDO: "+posiCopia.toStringAtaque());
+                         ventana.jugador.salidaObject.writeInt(1);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeUTF("ATAQUE: "+posiCopia.toStringAtaque());
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(20);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeObject(posiCopia);
+                         ventana.jugador.salidaObject.flush();
+                         ventana.jugador.salidaObject.writeInt(numJugadorAtacando); 
+                         ventana.jugador.salidaObject.flush();
+//                         ventana.jugador.salidaObject.writeInt(opcion); 
+//                         ventana.jugador.salidaObject.flush();
+                     } catch (ClassNotFoundException ex) {}
+                 }
+                break;
                     
             }
          }

@@ -639,6 +639,15 @@ public class VentanaJugador extends javax.swing.JFrame {
         try {
             jugador.conexion();
             System.out.println("El número de jugador es:");
+            int x=(new Random()).nextInt(20);
+            int y=(new Random()).nextInt(20);
+            int x2=(new Random()).nextInt(20);
+            int y2=(new Random()).nextInt(20);
+            tableroLogico[x][y]=-1;
+            tableroLogico[x2][y2]=-1;
+            tableroLabels[x][y].setIcon(iconoRemolino);
+            tableroLabels[x2][y2].setIcon(iconoRemolino);
+                    
         } catch (IOException ex) {}
     }//GEN-LAST:event_btn_IniciarActionPerformed
 
@@ -749,7 +758,7 @@ public class VentanaJugador extends javax.swing.JFrame {
     ImageIcon iconoArmeria= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\armeria.png");
     ImageIcon iconoMina= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\mina.png");
     ImageIcon iconoTemplo= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\templo.png");
-    
+    ImageIcon iconoRemolino= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\remolino.png");
     int tipoEstructura=0;
     
     int tipoAtaque=0;
