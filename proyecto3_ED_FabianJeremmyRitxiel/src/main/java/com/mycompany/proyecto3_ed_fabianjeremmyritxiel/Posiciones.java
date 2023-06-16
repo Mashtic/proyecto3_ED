@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author fabia
  */
 public class Posiciones implements Serializable{
-    ArrayList<Coordenada> listaCoordenada;
+    public ArrayList<Coordenada> listaCoordenada;
 
     public Posiciones() {
         this.listaCoordenada = new ArrayList<Coordenada>();

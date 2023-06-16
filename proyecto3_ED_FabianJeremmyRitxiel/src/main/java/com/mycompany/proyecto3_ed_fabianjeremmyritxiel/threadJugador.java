@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author fabia
@@ -111,8 +112,11 @@ public class threadJugador extends Thread{
                                  //DAÑA O ELIMINA ESTRUCTURA
                                  //coordenada.acerto=true
                                  //para todod 
+                                 ventana.grafoMapa.ataqueEnIslas(posiAtaque);
+                                 //System.out.println("se recivio ataque de canon.");
                              }
                              ventana.marcar(cord);
+                             ventana.pintarTableroLogico();
                          }
                          ventana.mostrarAtaque("RECIBIDO: "+posiAtaque.toStringAtaque());
                          ventana.jugador.salidaObject.writeInt(1);
@@ -156,6 +160,7 @@ public class threadJugador extends Thread{
                                  //DAÑA O ELIMINA ESTRUCTURA
                                  //coordenada.acerto=true
                                  //para todod 
+                                 ventana.grafoMapa.ataqueEnIslas(posiAtaque);
                             }
                              else{
                                  posiCopia.listaCoordenada.add(cord);
@@ -191,6 +196,7 @@ public class threadJugador extends Thread{
                                  //DAÑA O ELIMINA ESTRUCTURA
                                  //coordenada.acerto=true
                                  //para todod 
+                                 ventana.grafoMapa.ataqueEnIslas(posiAtaque);
                              }
                              ventana.marcar(cord);
                          }
@@ -223,6 +229,7 @@ public class threadJugador extends Thread{
                                  //DAÑA O ELIMINA ESTRUCTURA
                                  //coordenada.acerto=true
                                  //para todod 
+                                 ventana.grafoMapa.ataqueEnIslas(posiAtaque);
                              }
                              ventana.marcar(cord);
                          }
@@ -482,6 +489,11 @@ public class threadJugador extends Thread{
                  }
                 break;
                     
+            }
+            //si no quedan islas, termina la partida para este jugador
+            if (ventana.grafoMapa.verifIslas()){
+                JOptionPane.showMessageDialog(null,"has perdido, ya no te quedan islas.");
+                break;
             }
          }
          catch (IOException e){

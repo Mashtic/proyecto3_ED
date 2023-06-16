@@ -4,8 +4,10 @@
  */
 package com.mycompany.proyecto3_ed_fabianjeremmyritxiel;
 
+import archGrafos.grafo;
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +21,11 @@ import javax.swing.JOptionPane;
  */
 public class VentanaJugador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaJugador
-     */
+    static public grafo grafoMapa;
+    
     public VentanaJugador() {
+        
+        grafoMapa = new grafo();
         
         initComponents();
         //jp_TableroJugador.setLayout(null);
@@ -32,7 +35,8 @@ public class VentanaJugador extends javax.swing.JFrame {
         initImages();
         setearLabels();
         
-        
+         threadCicloGrafo thrCicloG = new threadCicloGrafo(this);
+        thrCicloG.start();
     }
 
     /**
@@ -104,6 +108,8 @@ public class VentanaJugador extends javax.swing.JFrame {
         lbl_CantPlata = new javax.swing.JLabel();
         btn_Horizontal = new javax.swing.JButton();
         btn_Vertical = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -354,6 +360,20 @@ public class VentanaJugador extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("ver grafo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("acceder armas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -370,9 +390,6 @@ public class VentanaJugador extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jp_TableroJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -383,16 +400,22 @@ public class VentanaJugador extends javax.swing.JFrame {
                                         .addComponent(btn_PonerFuente)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btn_PonerMercado)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn_Mercado, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(btn_PonerConector)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btn_PonerArmeria))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(btn_Mercado, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_PonerArmeria)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jp_TableroJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -468,7 +491,7 @@ public class VentanaJugador extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btn_TaberoP3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(btn_TableroP4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 12, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -494,13 +517,17 @@ public class VentanaJugador extends javax.swing.JFrame {
                                         .addComponent(btn_PonerMercado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(btn_PonerConector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btn_PonerArmeria, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(btn_PonerArmeria, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(btn_PonerMina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btn_PonerTemplo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btn_Mercado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btn_Mercado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btn_Canon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -509,7 +536,7 @@ public class VentanaJugador extends javax.swing.JFrame {
                                     .addComponent(btn_CanonBB, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btn_BarcoF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_BarcoF)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(btn_Escudo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(btn_Kraken, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -645,8 +672,8 @@ public class VentanaJugador extends javax.swing.JFrame {
             int y2=(new Random()).nextInt(20);
             tableroLogico[x][y]=-1;
             tableroLogico[x2][y2]=-1;
-            tableroLabels[x][y].setIcon(iconoRemolino);
-            tableroLabels[x2][y2].setIcon(iconoRemolino);
+            //tableroLabels[x][y].setIcon(iconoRemolino);
+            //tableroLabels[x2][y2].setIcon(iconoRemolino);
                     
         } catch (IOException ex) {}
     }//GEN-LAST:event_btn_IniciarActionPerformed
@@ -731,6 +758,20 @@ public class VentanaJugador extends javax.swing.JFrame {
     private void btn_KrakenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_KrakenActionPerformed
         tipoAtaque=12;
     }//GEN-LAST:event_btn_KrakenActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ventanaGrafo ventVerGrafo01 = new ventanaGrafo(grafoMapa);
+        ventVerGrafo01.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (grafoMapa.encontrarArmeria()){
+            ventanaComprarArmas ventCompAr = new ventanaComprarArmas(this);
+            ventCompAr.show();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     Jugador jugador;
     //----------------------------------
@@ -749,16 +790,16 @@ public class VentanaJugador extends javax.swing.JFrame {
     
     
     // crea imagen blanco
-    ImageIcon iconoVacio = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\wcvacio.GIF");
-    ImageIcon iconoEquiz = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\cequiz.GIF");
-    ImageIcon iconoCirculo = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\ccirculo.GIF");
-    ImageIcon iconoFuente= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\fuente.png");
-    ImageIcon iconoMercado= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\mercado.png");
-    ImageIcon iconoConector= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\conector.png");
-    ImageIcon iconoArmeria= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\armeria.png");
-    ImageIcon iconoMina= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\mina.png");
-    ImageIcon iconoTemplo= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\templo.png");
-    ImageIcon iconoRemolino= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\remolino.png");
+    ImageIcon iconoVacio = new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgGatico\\wcvacio.GIF");
+    ImageIcon iconoEquiz = new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgGatico\\cequiz.GIF");
+    ImageIcon iconoCirculo = new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgGatico\\ccirculo.GIF");
+    ImageIcon iconoFuente= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\fuente.png");
+    ImageIcon iconoMercado= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\mercado.png");
+    ImageIcon iconoConector= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\conector.png");
+    ImageIcon iconoArmeria= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\armeria.png");
+    ImageIcon iconoMina= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\mina.png");
+    ImageIcon iconoTemplo= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\templo.png");
+    
     int tipoEstructura=0;
     
     int tipoAtaque=0;
@@ -770,19 +811,19 @@ public class VentanaJugador extends javax.swing.JFrame {
     
     int cantFuente=1;
     int cantMercado=1;
-    int cantConector=0;
-    int cantArmeria=0;
-    int cantMina=0;
-    int cantTemplo=0;
+    int cantConector=2;
+    int cantArmeria=1;
+    int cantMina=2;
+    int cantTemplo=1;
     int cantCanon=5;
     int cantCanonM=5;
     int cantBomba=5;
     int cantCanonBB=10;
     int cantBarcoF=10;
-    int cantEscudo=0;
-    int cantKraken=0;
+    static int cantEscudo=0;
+    static int cantKraken=0;
     int cantPlata=4000;
-    int cantHierro=0;
+    static int cantHierro=10000;
     
     int jugadorEnemigo=0;
     
@@ -970,7 +1011,12 @@ public class VentanaJugador extends javax.swing.JFrame {
     // este metodo es la respuesta del cliente al clic del enemigo
     public void marcar(Coordenada cord)
     {
-        
+        if (cord.isAcerto()){
+            tableroLogico[cord.getX()][cord.getY()] = 7;
+        }
+        else{
+            tableroLogico[cord.getX()][cord.getY()] = 20;
+        }
     }
     public void bomba(int col, int fila)
     {
@@ -1007,7 +1053,14 @@ public class VentanaJugador extends javax.swing.JFrame {
             tableroLogico[columna+1][fila+1]=tipoEstructura;
             cantFuente--;
             setearLabels();
-            //AGREGAR A GRAFO                 
+            //AGREGAR A GRAFO      
+            Posiciones posTemp = new Posiciones();
+            posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+            posTemp.listaCoordenada.add(new Coordenada(columna+1, fila));
+            posTemp.listaCoordenada.add(new Coordenada(columna, fila+1));
+            posTemp.listaCoordenada.add(new Coordenada(columna+1, fila+1));
+            
+            grafoMapa.agregarVertice(columna, fila, 1, posTemp);
                     
             } catch (ArrayIndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
@@ -1061,14 +1114,24 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna+1][fila].setIcon(iconoMercado);
                     tableroLogico[columna+1][fila]=tipoEstructura;
+                    
                     //Agregar grafo
+                    Posiciones posTemp = new Posiciones();
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                    posTemp.listaCoordenada.add(new Coordenada(columna+1, fila));
+                    grafoMapa.agregarVertice(columna, fila, 2, posTemp);
                 }
                 else{
                     tableroLabels[columna][fila].setIcon(iconoMercado);
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna][fila+1].setIcon(iconoMercado);
                     tableroLogico[columna][fila+1]=tipoEstructura;
+                    
                     //agregar grafo
+                    Posiciones posTemp = new Posiciones();
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila+1));
+                    grafoMapa.agregarVertice(columna, fila, 2, posTemp);
                 }
                 cantMercado--;
                 setearLabels();
@@ -1142,8 +1205,12 @@ public class VentanaJugador extends javax.swing.JFrame {
                 tableroLogico[columna][fila]=tipoEstructura;
                 cantConector--;
                 setearLabels();
+                
+                //agrega la isla al grafo
+                Posiciones posTemp = new Posiciones();
+                posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                grafoMapa.agregarVertice(columna, fila, 3, posTemp);
                              
-                    
             } catch (ArrayIndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(this, "Se escogieron coordenadas fuera del rango del tablero", 
                             "Posiciones fuera de rango", JOptionPane.ERROR_MESSAGE);
@@ -1219,12 +1286,24 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna+1][fila].setIcon(iconoArmeria);
                     tableroLogico[columna+1][fila]=tipoEstructura;
+                    
+                    //agrega la isla al grafo
+                    Posiciones posTemp = new Posiciones();
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                    posTemp.listaCoordenada.add(new Coordenada(columna+1, fila));
+                    grafoMapa.agregarVertice(columna, fila, 4, posTemp);
                 }
                 else{
                     tableroLabels[columna][fila].setIcon(iconoArmeria);
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna][fila+1].setIcon(iconoArmeria);
                     tableroLogico[columna][fila+1]=tipoEstructura;
+                    
+                    //agrega la isla al grafo
+                    Posiciones posTemp = new Posiciones();
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila+1));
+                    grafoMapa.agregarVertice(columna, fila, 4, posTemp);
                 }
                 cantArmeria--;
                 setearLabels();
@@ -1305,12 +1384,24 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna+1][fila].setIcon(iconoMina);
                     tableroLogico[columna+1][fila]=tipoEstructura;
+                    
+                    //agrega la isla al grafo
+                    Posiciones posTemp = new Posiciones();
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                    posTemp.listaCoordenada.add(new Coordenada(columna+1, fila));
+                    grafoMapa.agregarVertice(columna, fila, 5, posTemp);
                 }
                 else{
                     tableroLabels[columna][fila].setIcon(iconoMina);
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna][fila+1].setIcon(iconoMina);
                     tableroLogico[columna][fila+1]=tipoEstructura;
+                    
+                    //agrega la isla al grafo
+                    Posiciones posTemp = new Posiciones();
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila+1));
+                    grafoMapa.agregarVertice(columna, fila, 5, posTemp);
                 }
                 cantMina--;
                 setearLabels();             
@@ -1390,12 +1481,25 @@ public class VentanaJugador extends javax.swing.JFrame {
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna+1][fila].setIcon(iconoTemplo);
                     tableroLogico[columna+1][fila]=tipoEstructura;
+                    
+                    //agrega la isla al grafo
+                    Posiciones posTemp = new Posiciones();
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                    posTemp.listaCoordenada.add(new Coordenada(columna+1, fila));
+
+                    grafoMapa.agregarVertice(columna, fila, 6, posTemp);
                 }
                 else{
                     tableroLabels[columna][fila].setIcon(iconoTemplo);
                     tableroLogico[columna][fila]=tipoEstructura;
                     tableroLabels[columna][fila+1].setIcon(iconoTemplo);
                     tableroLogico[columna][fila+1]=tipoEstructura;
+                    
+                    //agrega la isla al grafo
+                    Posiciones posTemp = new Posiciones();
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila));
+                    posTemp.listaCoordenada.add(new Coordenada(columna, fila+1));
+                    grafoMapa.agregarVertice(columna, fila, 6, posTemp);
                 }
                 cantTemplo--;
                 setearLabels();            
@@ -2213,6 +2317,68 @@ public class VentanaJugador extends javax.swing.JFrame {
                 throw new AssertionError();
         }
     }
+    
+    
+    public void pintarTableroLogico(){
+        for(int i=0;i<DIMENSIONES;i++)
+        {
+            for(int j=0;j<DIMENSIONES;j++)
+            {
+                //System.out.println("caso de error");
+                //System.out.println(tableroLogico[i][j]);
+                switch (tableroLogico[i][j]) {
+                    case -1:
+
+                    case 0:
+                        tableroLabels[i][j].setIcon(iconoVacio);
+                        break;
+                    case 1:
+                        tableroLabels[i][j].setIcon(iconoFuente);
+                        break;
+                    case 2:
+                        tableroLabels[i][j].setIcon(iconoMercado);
+                        break;
+                    case 3:
+                        tableroLabels[i][j].setIcon(iconoConector);
+                        break;
+                    case 4:
+                        tableroLabels[i][j].setIcon(iconoArmeria);
+                        break;
+                    case 5:
+                        tableroLabels[i][j].setIcon(iconoMina);
+                        break;
+                    case 6:
+                        tableroLabels[i][j].setIcon(iconoTemplo);
+                        break;
+                    case 7:
+                        tableroLabels[i][j].setIcon(iconoEquiz);
+                        break;
+                    case 8:
+                        tableroLabels[i][j].setIcon(iconoEquiz);
+                        break;
+                    case 9:
+                        tableroLabels[i][j].setIcon(iconoEquiz);
+                        break;
+                    case 10:
+                        tableroLabels[i][j].setIcon(iconoEquiz);
+                        break;
+                    case 11:
+                        tableroLabels[i][j].setIcon(iconoEquiz);
+                        break;
+                    case 20:
+                        tableroLabels[i][j].setIcon(iconoCirculo);
+                        break;
+    //                            case 0:
+    //                                
+    //                                break;
+                    default:
+                        throw new AssertionError();
+                }
+            }
+        }           
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -2271,6 +2437,8 @@ public class VentanaJugador extends javax.swing.JFrame {
     private javax.swing.JButton btn_TableroP4;
     private javax.swing.JButton btn_TaboleroP1;
     private javax.swing.JButton btn_Vertical;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -2310,4 +2478,35 @@ public class VentanaJugador extends javax.swing.JFrame {
     private javax.swing.JTextArea txa_Mensaje;
     private javax.swing.JTextField txf_Mensaje;
     // End of variables declaration//GEN-END:variables
+
+    static class threadCicloGrafo extends Thread{
+        VentanaJugador vetnTemp;
+        threadCicloGrafo(VentanaJugador vetnTemp01){
+            vetnTemp = vetnTemp01;
+        }
+        public void run(){
+            int cont = 0;
+            while (true){
+                System.out.println("Tiempo :" + cont);
+                cont++;
+
+                //recorre el grafo buscando las isla que pueden recolectar recusros
+                ArrayList<Integer> tempCamb = grafoMapa.pasarCicloEnGrafo();
+                
+                cantHierro +=tempCamb.get(0);
+                cantEscudo +=tempCamb.get(1);
+                cantKraken +=tempCamb.get(2);
+                   
+                //cambia los labels de la interfaz
+                vetnTemp.setearLabels();
+                
+                try {
+                    Thread.sleep(1000); // Espera 1 segundos
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
