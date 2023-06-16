@@ -98,16 +98,7 @@ public class threadJugador extends Thread{
                          Posiciones posiAtaque=(Posiciones)entrada.readObject();
                          int numJugadorAtacando=entrada.readInt();
                          for (Coordenada cord : posiAtaque.listaCoordenada) {
-                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
-                                 if(ventana.tableroLogico[cord.getX()][cord.getY()]==-1){
-                                     ventana.jugador.salidaObject.writeInt(22);
-                                     ventana.jugador.salidaObject.flush();
-                                     ventana.jugador.salidaObject.writeInt(numJugadorAtacando);
-                                     ventana.jugador.salidaObject.flush();
-                                     
-                                 }else{
-                                     cord.setAcerto(true);
-                                 }
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0&&ventana.tableroLogico[cord.getX()][cord.getY()]!=-1){
                                  cord.setAcerto(true);
                                  //DAÑA O ELIMINA ESTRUCTURA
                                  //coordenada.acerto=true
@@ -143,7 +134,7 @@ public class threadJugador extends Thread{
                          int numJugadorAtacando=entrada.readInt();
                          Posiciones posiCopia=new Posiciones();
                          for (Coordenada cord : posiAtaque.listaCoordenada) {
-                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0&&ventana.tableroLogico[cord.getX()][cord.getY()]!=-1){
                                  cord.setAcerto(true);
                                  posiCopia.listaCoordenada.add(cord);
                                  for (int i = 0; i < 4; i++) {
@@ -153,7 +144,7 @@ public class threadJugador extends Thread{
                                     posiCopia.listaCoordenada.add(cordN);
                                  }
                                  for (Coordenada coordenada : posiCopia.listaCoordenada) {
-                                    if(ventana.tableroLogico[coordenada.getX()][coordenada.getY()]!=0){
+                                    if(ventana.tableroLogico[coordenada.getX()][coordenada.getY()]!=0&&ventana.tableroLogico[coordenada.getX()][coordenada.getY()]!=-1){
                                         coordenada.setAcerto(true);
                                     }
                                  }
@@ -165,8 +156,11 @@ public class threadJugador extends Thread{
                              else{
                                  posiCopia.listaCoordenada.add(cord);
                              }
-                             ventana.marcar(cord);
                          }
+                         for (Coordenada coordenada : posiCopia.listaCoordenada) {
+                             ventana.marcar(coordenada);  
+                         }
+                         ventana.pintarTableroLogico();
                          ventana.mostrarAtaque("RECIBIDO: "+posiCopia.toStringAtaque());
                          ventana.jugador.salidaObject.writeInt(1);
                          ventana.jugador.salidaObject.flush();
@@ -191,7 +185,7 @@ public class threadJugador extends Thread{
                          Posiciones posiAtaque=(Posiciones)entrada.readObject();
                          int numJugadorAtacando=entrada.readInt();
                          for (Coordenada cord : posiAtaque.listaCoordenada) {
-                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0&&ventana.tableroLogico[cord.getX()][cord.getY()]!=-1){
                                  cord.setAcerto(true);
                                  //DAÑA O ELIMINA ESTRUCTURA
                                  //coordenada.acerto=true
@@ -200,6 +194,7 @@ public class threadJugador extends Thread{
                              }
                              ventana.marcar(cord);
                          }
+                         ventana.pintarTableroLogico();
                          ventana.mostrarAtaque("RECIBIDO: "+posiAtaque.toStringAtaque());
                          ventana.jugador.salidaObject.writeInt(1);
                          ventana.jugador.salidaObject.flush();
@@ -224,7 +219,7 @@ public class threadJugador extends Thread{
                          Posiciones posiAtaque=(Posiciones)entrada.readObject();
                          int numJugadorAtacando=entrada.readInt();
                          for (Coordenada cord : posiAtaque.listaCoordenada) {
-                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0){
+                             if(ventana.tableroLogico[cord.getX()][cord.getY()]!=0&&ventana.tableroLogico[cord.getX()][cord.getY()]!=-1){
                                  cord.setAcerto(true);
                                  //DAÑA O ELIMINA ESTRUCTURA
                                  //coordenada.acerto=true
@@ -232,6 +227,7 @@ public class threadJugador extends Thread{
                                  ventana.grafoMapa.ataqueEnIslas(posiAtaque);
                              }
                              ventana.marcar(cord);
+                             ventana.pintarTableroLogico();
                          }
                          ventana.mostrarAtaque("RECIBIDO: "+posiAtaque.toStringAtaque());
                          ventana.jugador.salidaObject.writeInt(1);

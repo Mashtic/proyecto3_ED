@@ -672,8 +672,8 @@ public class VentanaJugador extends javax.swing.JFrame {
             int y2=(new Random()).nextInt(20);
             tableroLogico[x][y]=-1;
             tableroLogico[x2][y2]=-1;
-            //tableroLabels[x][y].setIcon(iconoRemolino);
-            //tableroLabels[x2][y2].setIcon(iconoRemolino);
+            tableroLabels[x][y].setIcon(iconoRemolino);
+            tableroLabels[x2][y2].setIcon(iconoRemolino);
                     
         } catch (IOException ex) {}
     }//GEN-LAST:event_btn_IniciarActionPerformed
@@ -790,16 +790,16 @@ public class VentanaJugador extends javax.swing.JFrame {
     
     
     // crea imagen blanco
-    ImageIcon iconoVacio = new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgGatico\\wcvacio.GIF");
-    ImageIcon iconoEquiz = new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgGatico\\cequiz.GIF");
-    ImageIcon iconoCirculo = new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgGatico\\ccirculo.GIF");
-    ImageIcon iconoFuente= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\fuente.png");
-    ImageIcon iconoMercado= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\mercado.png");
-    ImageIcon iconoConector= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\conector.png");
-    ImageIcon iconoArmeria= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\armeria.png");
-    ImageIcon iconoMina= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\mina.png");
-    ImageIcon iconoTemplo= new ImageIcon("C:\\Users\\Llermy\\Desktop\\unionPro3ED03\\imgPirata\\templo.png");
-    
+    ImageIcon iconoVacio = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\wcvacio.GIF");
+    ImageIcon iconoEquiz = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\cequiz.GIF");
+    ImageIcon iconoCirculo = new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgGatico\\ccirculo.GIF");
+    ImageIcon iconoFuente= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\fuente.png");
+    ImageIcon iconoMercado= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\mercado.png");
+    ImageIcon iconoConector= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\conector.png");
+    ImageIcon iconoArmeria= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\armeria.png");
+    ImageIcon iconoMina= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\mina.png");
+    ImageIcon iconoTemplo= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\templo.png");
+    ImageIcon iconoRemolino= new ImageIcon("C:\\Users\\fabia\\OneDrive\\Escritorio\\imgPirata\\remolino.png");
     int tipoEstructura=0;
     
     int tipoAtaque=0;
@@ -1883,6 +1883,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                 jugador.salidaObject.flush();
                 jugador.salidaObject.writeObject(posiAtaque);
                 jugador.salidaObject.flush();
+                 cantCanonM--;
+                 setearLabels();
             }
         } catch (IOException ex) {
             System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
@@ -1936,6 +1938,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                     jugador.salidaObject.writeObject(posiAtaque);
                     jugador.salidaObject.flush();
                 }
+                cantBomba--;
+                setearLabels();
             }
         } catch (IOException ex) {
             System.out.println("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR1");
@@ -2150,6 +2154,9 @@ public class VentanaJugador extends javax.swing.JFrame {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
                         switch (tableroLogicoEnemigo1[i][j]) {
+                            case -1:
+                                tableroEnemigo[i][j].setIcon(iconoRemolino);
+                                break;
                             case 0:
                                 tableroEnemigo[i][j].setIcon(iconoVacio);
                                 break;
@@ -2192,6 +2199,9 @@ public class VentanaJugador extends javax.swing.JFrame {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
                         switch (tableroLogicoEnemigo2[i][j]) {
+                            case -1:
+                                tableroEnemigo[i][j].setIcon(iconoRemolino);
+                                break;
                             case 0:
                                 tableroEnemigo[i][j].setIcon(iconoVacio);
                                 break;
@@ -2234,6 +2244,9 @@ public class VentanaJugador extends javax.swing.JFrame {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
                         switch (tableroLogicoEnemigo3[i][j]) {
+                            case -1:
+                                tableroEnemigo[i][j].setIcon(iconoRemolino);
+                                break;
                             case 0:
                                 tableroEnemigo[i][j].setIcon(iconoVacio);
                                 break;
@@ -2276,6 +2289,9 @@ public class VentanaJugador extends javax.swing.JFrame {
                     for(int j=0;j<DIMENSIONES;j++)
                     {
                         switch (tableroLogicoEnemigo4[i][j]) {
+                            case -1:
+                                tableroEnemigo[i][j].setIcon(iconoRemolino);
+                                break;
                             case 0:
                                 tableroEnemigo[i][j].setIcon(iconoVacio);
                                 break;
@@ -2328,7 +2344,8 @@ public class VentanaJugador extends javax.swing.JFrame {
                 //System.out.println(tableroLogico[i][j]);
                 switch (tableroLogico[i][j]) {
                     case -1:
-
+                        tableroEnemigo[i][j].setIcon(iconoRemolino);
+                        break;
                     case 0:
                         tableroLabels[i][j].setIcon(iconoVacio);
                         break;
