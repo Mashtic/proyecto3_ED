@@ -378,4 +378,12 @@ public class grafo {
         }
         return false;
     }
+    public boolean encontrarMercado(){
+        for (int i = 0; i < vertices.size(); i++) {
+            if (vertices.get(i).isla.tipo == "mercado"){
+                return true;
+            }
+        }
+        return false;
+    }
 }

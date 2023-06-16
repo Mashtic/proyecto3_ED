@@ -206,6 +206,11 @@ public class VentanaJugador extends javax.swing.JFrame {
         });
 
         btn_Mercado.setText("Acceder Mercado");
+        btn_Mercado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MercadoActionPerformed(evt);
+            }
+        });
 
         btn_CanonBB.setText("Cañon BB");
         btn_CanonBB.addActionListener(new java.awt.event.ActionListener() {
@@ -772,6 +777,13 @@ public class VentanaJugador extends javax.swing.JFrame {
             ventCompAr.show();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btn_MercadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MercadoActionPerformed
+        if (grafoMapa.encontrarMercado()){
+            VentanaMercado ventMercado = new VentanaMercado(this);
+            ventMercado.show();
+        }
+    }//GEN-LAST:event_btn_MercadoActionPerformed
     
     Jugador jugador;
     //----------------------------------
