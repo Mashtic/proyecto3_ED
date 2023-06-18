@@ -96,7 +96,7 @@ public class VentanaMercado extends javax.swing.JFrame {
 
         jButton14.setText("jButton14");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +381,7 @@ public class VentanaMercado extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(94, 94, 94)
                             .addComponent(jLabel16))))
-                .addGap(0, 48, Short.MAX_VALUE)
+                .addGap(0, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
